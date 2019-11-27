@@ -1,0 +1,15 @@
+h1 Usuarios
+
+table
+  tr
+    th Nombre
+    th Rol
+    th 
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.name
+        td = user.roles.first.name_es
+        td = link_to 'Editar', edit_user_path(user)
+
+= link_to 'nuevo', new_user_path

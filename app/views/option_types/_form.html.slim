@@ -1,0 +1,11 @@
+= form_with model: @option_type do |f|
+  = f.label :name
+  = f.text_field :name
+
+  hr
+  = f.fields_for :option_values do |option_value_form|
+    = option_value_form.text_field :name
+    = option_value_form.check_box :_destroy
+    br
+
+  = f.submit 'Create'

@@ -1,0 +1,17 @@
+h1 Tareas
+
+table
+  tr
+    th Nombre
+    th Description
+    th Factura
+    th Fecha de ejecucion
+    th 
+  tbody
+    - @tasks.each do |task|
+      tr
+        td = task.type
+        td = task.description
+        td = link_to task.invoice_code, edit_invoices_sale_path(task.invoice)
+        td = task.remember
+        td = link_to 'Editar', '#'

@@ -1,0 +1,20 @@
+h2 Actividades Factura #{@sale.code}
+hr
+
+table
+  tr
+    th Nombre
+    th Description
+    th Asignado
+    th tipo
+    th 
+  tbody
+    - @activities.each do |activity|
+      tr
+        td = activity.type
+        td = activity.description
+        td = activity.collection_advisor_name
+        td = activity.type_activity
+        td = link_to 'Editar', edit_invoices_sale_activities_visit_path(@sale, activity)
+
+= render '/components/activities_links'

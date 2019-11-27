@@ -1,0 +1,5 @@
+= form_with model: [@sale, @todo] do |f|
+
+  = render '/invoices/activities/common_field', f: f
+
+  = f.submit 'Guardar'

@@ -1,0 +1,15 @@
+= form_with model: [@product, @variant] do |f|
+  = f.label :sku
+  = f.text_field :sku
+  = f.label :price
+  = f.number_field :price, step: 0.5
+
+  - @product.option_types.each do |option_type|
+    = f.collection_select 'option_value_ids',
+                          option_type.option_values,
+                          :id,
+                          :name,
+                          { include_blank: true },
+                          { name: 'variant[option_value_ids][]' }
+
+  = f.submit 'Create'

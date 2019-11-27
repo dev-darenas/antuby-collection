@@ -1,0 +1,11 @@
+= form_with model: [@sale, @visit] do |f|
+
+  = f.label :collector
+  = f.collection_select :collector_id,
+                        User.all,
+                        :id,
+                        :name
+
+  = render '/invoices/activities/common_field', f: f
+  
+  = f.submit 'Guardar'

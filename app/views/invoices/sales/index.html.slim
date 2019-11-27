@@ -1,0 +1,21 @@
+h2 Facturas
+
+table
+  tr
+    th Codigo
+    th Nombre
+    th Valor
+    th Saldo
+    th
+    th
+  tbody
+    - @sales.each do |sale|
+      tr
+        td = sale.code
+        td = sale.third_name
+        td = sale.total
+        td = sale.balance
+        td = link_to 'Edit', edit_invoices_sale_path(sale)
+        td = link_to 'Actividades', invoices_sale_activities_path(sale)
+
+= link_to 'new', new_invoices_sale_path

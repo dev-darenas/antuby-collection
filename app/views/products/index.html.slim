@@ -1,0 +1,13 @@
+h1 Products
+
+table
+  tr
+    th Nombre
+    th 
+  tbody
+    - @products.each do |product|
+      tr
+        td = product.name
+        td = link_to 'Editar', edit_product_path(product)
+
+= link_to 'nuevo', new_product_path

@@ -1,0 +1,23 @@
+h2 Registrate
+
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = render "devise/shared/error_messages", resource: resource
+  
+  .field
+    = f.label 'Nombre de la empresa'
+    = f.text_field :enterprise_name, autofocus: true, autocomplete: 'email'
+
+  .field
+    = f.label :email_field
+    = f.email_field :email, autofocus: true, autocomplete: 'email'
+
+  .field
+    = f.label :password
+    = f.password_field :password, autocomplete: "new-password"
+
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, autocomplete: "new-password"
+
+  .actions
+    = f.submit 'Registrarme'

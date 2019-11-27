@@ -1,0 +1,29 @@
+= form_with model: @user do |f|
+
+  = f.label :email
+  = f.email_field :email
+
+  = f.label :first_name
+  = f.text_field :first_name
+
+  = f.label :last_name
+  = f.text_field :last_name
+
+  = f.label :current_password
+  = f.password_field :current_password
+
+  = f.label :password
+  = f.password_field :password
+
+  = f.label :password_confirmation
+  = f.password_field :password_confirmation
+
+  = f.label :rols
+  = f.collection_select 'role_ids',
+                        Role.all,
+                        :id,
+                        :name_es,
+                        { include_blank: false },
+                        { name: 'user[role_ids][]' }
+
+  = f.submit 'Create'

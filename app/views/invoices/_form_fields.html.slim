@@ -1,0 +1,15 @@
+= f.label :cliente
+= f.collection_select :third_id,
+                      @enterprise.clients,
+                      :id,
+                      :name
+= f.label :code
+= f.text_field :code
+= f.label :creation_date
+= f.date_select :creation_date
+= f.label :expiration_date
+= f.date_select :expiration_date
+= f.label :description
+= f.text_area :description
+= f.label :total
+= f.number_field :total

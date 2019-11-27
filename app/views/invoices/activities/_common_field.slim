@@ -1,0 +1,29 @@
+br
+= f.label :status
+= f.select :status,
+           Activity.statuses.keys.map{ |status| [status.titleize, status] }
+br
+= f.label :type_activity
+= f.select :type_activity,
+           Activity.type_activities.keys.map{ |ta| [ta.titleize, ta] }
+br
+= f.label :description
+= f.text_area :description
+br
+= f.label :date_activity
+= f.date_select :date_activity
+br
+= f.label :remember
+= f.datetime_select :remember
+br
+= f.label :collection_advisor
+= f.collection_select :collection_advisor_id,
+                      User.all,
+                      :id,
+                      :name
+br
+= f.label :contact
+= f.collection_select :contact_id,
+                      @sale.third.contacts,
+                      :id,
+                      :full_name

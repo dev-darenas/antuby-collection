@@ -1,0 +1,13 @@
+h1 Tipos
+
+table
+  tr
+    th Nombre
+    th 
+  tbody
+    - @option_types.each do |option_type|
+      tr
+        td = option_type.name
+        td = link_to 'Edit', edit_option_type_path(option_type)
+
+= link_to 'nuevo', new_option_type_path

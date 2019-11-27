@@ -1,0 +1,13 @@
+h1 Products > #{@product.name} > variantes
+
+table
+  tr
+    th SKU
+    th 
+  tbody
+    - @variants.each do |variant|
+      tr
+        td = variant.sku
+        td
+
+= link_to 'nuevo', new_product_variant_path(@product)

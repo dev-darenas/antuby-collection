@@ -1,0 +1,9 @@
+= form_with model: [@sale, @call] do |f|
+
+  = render '/invoices/activities/common_field', f: f
+  br
+  = f.label :call_outcome
+  = f.select :call_outcome,
+             Activities::Call.call_outcomes.keys.map{ |c| [c.titleize, c] }
+
+  = f.submit 'Guardar'

@@ -1,0 +1,23 @@
+= form_with model: @product do |f|
+  = f.label :name
+  = f.text_field :name
+  = f.label :sku
+  = f.text_field :sku
+  = f.label :price
+  = f.number_field :price, step: 0.5
+  = f.label :description
+  = f.text_area :description
+
+  h4 Tipos de Productos
+  hr
+
+  = f.fields_for :product_option_types do |product_option_types_form|
+    = product_option_types_form.collection_select :option_type_id,
+        @enterprise.option_types,
+        :id,
+        :name,
+        { include_blank: ' ' }
+    = product_option_types_form.check_box :_destroy
+    br
+
+  = f.submit 'Create'
