@@ -1,0 +1,18 @@
+- edit_arg ||= nil
+- unless records.empty?
+  table.table
+    thead
+      tr
+        - presenter(records.first).columns.each do |column|
+          th = column[1]
+        th 
+    tbody
+      - records.each do |record|
+        - presenter(record) do |object|
+          tr
+            - object.columns.each do |column|
+              td = object.send(column[0])
+            td = link_to 'Editar', object.edit_link(edit_arg)
+- else
+  .alert.alert-secondary role="alert"
+    | Elementos no encontrados click <a href="#{new_record || new_polymorphic_path(records.klass)}" class="alert-link">aqui</a> para crear uno nuevo

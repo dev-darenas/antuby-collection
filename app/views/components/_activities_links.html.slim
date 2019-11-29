@@ -1,10 +1,11 @@
-hr
-= link_to 'nuevo visita', new_invoices_sale_activities_visit_path(@sale)
-br
-= link_to 'nuevo call', new_invoices_sale_activities_call_path(@sale)
-br
-= link_to 'nuevo email', new_invoices_sale_activities_email_path(@sale)
-br
-= link_to 'nuevo promesa de pago', new_invoices_sale_activities_payment_promise_path(@sale)
-br
-= link_to 'nuevo tarea', new_invoices_sale_activities_todo_path(@sale)
+.btn-group role="group" aria-label="actividades"
+  = link_to new_invoices_sale_activities_todo_path(@sale), class: 'btn btn-primary btn-sm' do
+    i.fas.fa-tasks
+  = link_to new_invoices_sale_activities_call_path(@sale), class: 'btn btn-primary btn-sm' do
+    i.fas.fa-phone-volume
+  = link_to new_invoices_sale_activities_email_path(@sale), class: 'btn btn-primary btn-sm' do
+    i.fas.fa-envelope
+  = link_to new_invoices_sale_activities_payment_promise_path(@sale), class: 'btn btn-primary btn-sm' do
+    i.fas.fa-money-bill
+  = link_to new_invoices_sale_activities_visit_path(@sale), class: 'btn btn-primary btn-sm' do
+    i.fas.fa-motorcycle

@@ -1,3 +1,7 @@
-h1 Factura > #{@sale.code} > editar
+= render 'components/breadcrumb',
+         links: [[invoices_sales_path, 'Facturas de Venta'], [@sale.code]]
 
 = render 'form'
+
+br
+= link_to 'Actividades', invoices_sale_activities_path(@sale), class: 'btn btn-primary'

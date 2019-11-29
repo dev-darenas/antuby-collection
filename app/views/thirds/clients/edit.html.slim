@@ -1,5 +1,6 @@
-h1 Clientes > #{@client.name} > Editar
+= render 'components/breadcrumb',
+         links: [[clients_path, 'Clientes'], ["#{@client.name}"]]
 
 = render 'form'
-
-= link_to 'Contactos', client_contacts_path(@client)
+br
+= link_to 'Contactos', client_contacts_path(@client), class: 'btn btn-primary'

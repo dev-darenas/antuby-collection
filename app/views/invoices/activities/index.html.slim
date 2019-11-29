@@ -1,20 +1,52 @@
-h2 Actividades Factura #{@sale.code}
+= render 'components/breadcrumb',
+         links: [[invoices_sales_path, 'Facturas de Venta'],
+          [edit_invoices_sale_path(@sale), @sale.code],
+          ['Actividades']]
 hr
+.row
+  .col-md-3
+    .card
+      .card-body
+        p.card-text
+          h3 = @sale.third_name
+          br = @sale.third_email
 
-table
-  tr
-    th Nombre
-    th Description
-    th Asignado
-    th tipo
-    th 
-  tbody
-    - @activities.each do |activity|
-      tr
-        td = activity.type
-        td = activity.description
-        td = activity.collection_advisor_name
-        td = activity.type_activity
-        td = link_to 'Editar', edit_invoices_sale_activities_visit_path(@sale, activity)
+          hr
+          = render '/components/activities_links'
+    hr
+    .accordion id="userAccordion"
+      .card
+        .card-header id="headingUserInfo"
+          h2.mb-0
+            button.btn.btn-link data-toggle="collapse" data-target="#collapseInfo" aria-expanded="true" aria-controls="collapseInfo"
+              | Información
+        .collapse aria-labelledby="headingUserInfo" data-parent="#userAccordion" id="collapseInfo"
+          .card-body
+            br = @sale.third_cellphone
+            br = @sale.third_phone
+            br = @sale.third_address_description
 
-= render '/components/activities_links'
+      .card
+        .card-header id="headingContacts"
+          h2.mb-0
+            button.btn.btn-link data-toggle="collapse" data-target="#collapseContacts" aria-expanded="true" aria-controls="collapseContacts"
+              | Contactos
+        .collapse aria-labelledby="headingContacts" data-parent="#userAccordion" id="collapseContacts"
+          .card-body
+            - @sale.third.contacts.each do |contact|
+              = render contact
+
+  .col-md-9
+    ul.nav.nav-tabs
+      li.nav-item
+        = link_to 'Actividades', "#", class: 'nav-link active'
+      li.nav-item
+        = link_to 'Llamadas', "#", class: 'nav-link'
+      li.nav-item
+        = link_to 'Email', "#", class: 'nav-link'
+      li.nav-item
+        = link_to 'Promesas de Pago', "#", class: 'nav-link'
+      li.nav-item
+        = link_to 'Tareas', "#", class: 'nav-link'
+    .tab-content
+      | some

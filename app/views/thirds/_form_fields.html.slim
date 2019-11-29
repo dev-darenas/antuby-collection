@@ -1,10 +1,24 @@
-= f.label :name
-= f.text_field :name
-= f.label :email
-= f.text_field :email
-= f.label :cellphone
-= f.text_field :cellphone
-= f.label :phone
-= f.text_field :phone
-= f.label :address
-= f.text_field :address_description
+.form-group.row
+  = f.label :name, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.text_field :name, class: 'form-control'
+
+.form-group.row
+  = f.label :email, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.text_field :email, class: 'form-control'
+
+.form-group.row
+  = f.label :cellphone, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.text_field :cellphone, class: 'form-control'
+
+.form-group.row
+  = f.label :phone, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.text_field :phone, class: 'form-control'
+
+.form-group.row
+  = f.label :address, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.text_field :address_description, class: 'form-control'

@@ -1,13 +1,5 @@
-h1 Clientes
+= render 'components/breadcrumb',
+         links: [['Clientes']]
 
-table
-  tr
-    th Nombre
-    th 
-  tbody
-    - @clients.each do |client|
-      tr
-        td = client.name
-        td = link_to 'Editar', edit_client_path(client)
-
-= link_to 'nuevo', new_client_path
+= link_to 'nuevo', new_client_path, class: 'btn btn-primary'
+= render 'components/table', records: @clients

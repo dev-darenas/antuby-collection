@@ -1,15 +1,34 @@
-= f.label :cliente
-= f.collection_select :third_id,
-                      @enterprise.clients,
-                      :id,
-                      :name
-= f.label :code
-= f.text_field :code
-= f.label :creation_date
-= f.date_select :creation_date
-= f.label :expiration_date
-= f.date_select :expiration_date
-= f.label :description
-= f.text_area :description
-= f.label :total
-= f.number_field :total
+.form-group.row
+  = f.label :cliente, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.collection_select :third_id,
+                          @enterprise.clients,
+                          :id,
+                          :name,
+                          { include_blank: false },
+                          { class: 'form-control' }
+
+.form-group.row
+  = f.label :code, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.text_field :code, class: 'form-control'
+
+.form-group.row
+  = f.label :creation_date, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.date_select :creation_date, class: 'form-control'
+
+.form-group.row
+  = f.label :expiration_date, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.date_select :expiration_date, class: 'form-control'
+
+.form-group.row
+  = f.label :description, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.text_area :description, class: 'form-control'
+
+.form-group.row
+  = f.label :total, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.number_field :total, class: 'form-control'

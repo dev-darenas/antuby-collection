@@ -1,3 +1,7 @@
-h1 Clientes > #{@client.name} > contactos > #{@contact.full_name} > editar
+= render 'components/breadcrumb',
+         links: [ [clients_path, 'Clientes'], 
+           [edit_client_path(@client), @client.name], 
+           [client_contacts_path(@client),'Contactos'],
+           [@contact.full_name] ]
 
 = render 'form'

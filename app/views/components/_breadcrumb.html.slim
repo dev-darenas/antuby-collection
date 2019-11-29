@@ -1,0 +1,12 @@
+nav aria-label="breadcrumb"
+  ol class="breadcrumb"
+    li class="breadcrumb-item"
+      a href="/" Dashboard
+    - links.each do |link|
+      - if link.length == 1
+        li class="breadcrumb-item active" aria-current="page"
+          = link[0]
+      - else
+        li class="breadcrumb-item"
+          a href="#{link[0]}" #{link[1]}
+    

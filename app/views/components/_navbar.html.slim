@@ -1,0 +1,38 @@
+.navbar.navbar-expand-lg.navbar-light.bg-light
+  a.navbar-brand href="/"
+    | Antuby
+
+  button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+    span.navbar-toggler-icon
+
+  .collapse.navbar-collapse id="navbarSupportedContent"
+    ul.navbar-nav.mr-auto
+
+      li.nav-item
+        = link_to 'Clientes', clients_path, class: 'nav-link'
+      li.nav-item
+        = link_to 'Tareas', tasks_path, class: 'nav-link'
+      li.nav-item
+        = link_to 'Ventas', invoices_sales_path, class: 'nav-link'
+      li.nav-item
+        = link_to 'Configuración', "#", class: 'nav-link'
+      li.nav-item.dropdown
+        a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          | Reportes
+        div.dropdown-menu aria-labelledby="navbarDropdown"
+          = link_to 'Ventas', '#', class: 'dropdown-item'
+          = link_to 'Cobranza', '#', class: 'dropdown-item'
+          .dropdown-divider
+          = link_to 'Some', '#', class: 'dropdown-item'
+
+    span.navbar-text
+      ul.navbar-nav.mr-auto
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            = current_user.name
+          div.dropdown-menu aria-labelledby="navbarDropdown"
+            = link_to 'Ventas', '#', class: 'dropdown-item'
+            = link_to 'Cobranza', '#', class: 'dropdown-item'
+            .dropdown-divider
+            = link_to 'Some', 'Salir', class: 'dropdown-item'
+
