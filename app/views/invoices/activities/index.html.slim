@@ -39,14 +39,19 @@ hr
   .col-md-9
     ul.nav.nav-tabs
       li.nav-item
-        = link_to 'Actividades', "#", class: 'nav-link active'
+        = link_to 'Actividades', invoices_sale_activities_path(@sale), class: 'nav-link active'
       li.nav-item
-        = link_to 'Llamadas', "#", class: 'nav-link'
+        = link_to 'Llamadas', invoices_sale_activities_calls_path(@sale), class: 'nav-link'
       li.nav-item
-        = link_to 'Email', "#", class: 'nav-link'
+        = link_to 'Email', invoices_sale_activities_emails_path(@sale), class: 'nav-link'
       li.nav-item
-        = link_to 'Promesas de Pago', "#", class: 'nav-link'
+        = link_to 'Promesas de Pago', invoices_sale_activities_payment_promises_path(@sale), class: 'nav-link'
       li.nav-item
-        = link_to 'Tareas', "#", class: 'nav-link'
+        = link_to 'Tareas', invoices_sale_activities_todos_path(@sale), class: 'nav-link'
     .tab-content
-      | some
+      - if @activities.exists?
+        - @activities.each do |activity|
+          = render activity
+      - else
+        .alert.alert-secondary role="alert"
+          | No se han reportado actividades, presiona <a href="#" class="alert-link">aqui</a> para crear una.

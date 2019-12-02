@@ -1,0 +1,3 @@
+class EmailPresenter < BasePresenter
+
+end

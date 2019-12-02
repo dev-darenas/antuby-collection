@@ -1,0 +1,12 @@
+- payment_promise = presenter(payment_promise)
+.card
+  .card-body
+    .card-title
+      i.fas.fa-money-bill
+    .text-right
+      = payment_promise.created
+    = payment_promise.description
+  .card-footer
+    =link_to 'Editar', edit_invoices_sale_activities_payment_promise_path(@sale, payment_promise)
+
+hr

@@ -1,29 +1,50 @@
-br
-= f.label :status
-= f.select :status,
-           Activity.statuses.keys.map{ |status| [status.titleize, status] }
-br
-= f.label :type_activity
-= f.select :type_activity,
-           Activity.type_activities.keys.map{ |ta| [ta.titleize, ta] }
-br
-= f.label :description
-= f.text_area :description
-br
-= f.label :date_activity
-= f.date_select :date_activity
-br
-= f.label :remember
-= f.datetime_select :remember
-br
-= f.label :collection_advisor
-= f.collection_select :collection_advisor_id,
-                      User.all,
-                      :id,
-                      :name
-br
-= f.label :contact
-= f.collection_select :contact_id,
-                      @sale.third.contacts,
-                      :id,
-                      :full_name
+.form-group.row
+  = f.label :status, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.select :status,
+               Activity.statuses.keys.map{ |status| [status.titleize, status] },
+               {},
+               { class: 'form-control' }
+
+.form-group.row
+  = f.label :type_activity, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.select :type_activity,
+               Activity.type_activities.keys.map{ |ta| [ta.titleize, ta] },
+               {},
+               { class: 'form-control' }
+
+.form-group.row
+  = f.label :description, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.text_area :description, class: 'form-control'
+
+.form-group.row
+  = f.label :date_activity, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.date_select :date_activity
+
+.form-group.row
+  = f.label :remember, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.datetime_select :remember
+
+.form-group.row
+  = f.label :collection_advisor, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.collection_select :collection_advisor_id,
+                          User.all,
+                          :id,
+                          :name,
+                          { include_blank: false },
+                          { class: 'form-control' }
+
+.form-group.row
+  = f.label :contact, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.collection_select :contact_id,
+                          @sale.third.contacts,
+                          :id,
+                          :full_name,
+                          { include_blank: false },
+                          { class: 'form-control' }

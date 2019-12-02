@@ -1,3 +1,7 @@
-h1 Factura > #{@sale.code} > Actividades > nueva promesa de pago
+= render 'components/breadcrumb',
+         links: [[invoices_sales_path, 'Facturas de Venta'],
+          [edit_invoices_sale_path(@sale), @sale.code],
+          [invoices_sale_activities_path(@sale), 'Actividades'],
+          ['Nueva Promesa de Pago']]
 
 = render 'form'

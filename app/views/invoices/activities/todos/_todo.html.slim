@@ -1,0 +1,12 @@
+- todo = presenter(todo)
+.card
+  .card-body
+    .card-title
+      i.fas.fa-tasks
+    .text-right
+      = todo.created
+    = todo.description
+  .card-footer
+    =link_to 'Editar', edit_invoices_sale_activities_todo_path(@sale, todo)
+
+hr

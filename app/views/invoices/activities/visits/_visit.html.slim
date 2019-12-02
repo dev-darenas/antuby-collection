@@ -1,0 +1,12 @@
+- visit = presenter(visit)
+.card
+  .card-body
+    .card-title
+      i.fas.fa-motorcycle
+    .text-right
+      = visit.created
+    = visit.description
+  .card-footer
+    =link_to 'Editar', edit_invoices_sale_activities_visit_path(@sale, visit)
+
+hr

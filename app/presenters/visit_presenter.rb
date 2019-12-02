@@ -1,0 +1,3 @@
+class VisitPresenter < BasePresenter
+
+end

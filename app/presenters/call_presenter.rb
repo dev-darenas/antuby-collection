@@ -1,0 +1,3 @@
+class CallPresenter < BasePresenter
+
+end

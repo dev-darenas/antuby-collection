@@ -1,0 +1,12 @@
+- email = presenter(email)
+.card
+  .card-body
+    .card-title
+      i.fas.fa-envelope
+    .text-right
+      = email.created
+    = email.description
+  .card-footer
+    =link_to 'Editar', edit_invoices_sale_activities_email_path(@sale, email)
+
+hr

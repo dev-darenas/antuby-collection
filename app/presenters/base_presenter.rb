@@ -8,6 +8,10 @@ class BasePresenter < SimpleDelegator
     raise StandardError.new 'Method not implemented'
   end
 
+  def created
+    @model.created_at.strftime("%d/%m/%Y")
+  end
+
   def edit_link(*args)
     @view.edit_polymorphic_path(@model)
   end

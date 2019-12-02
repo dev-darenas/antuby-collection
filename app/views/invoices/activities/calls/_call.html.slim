@@ -1,0 +1,12 @@
+- call = presenter(call)
+.card
+  .card-body
+    .card-title
+      i.fas.fa-phone-volume
+    .text-right
+      = call.created
+    = call.description
+  .card-footer
+    =link_to 'Editar', edit_invoices_sale_activities_call_path(@sale, call)
+
+hr

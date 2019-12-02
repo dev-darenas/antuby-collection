@@ -1,0 +1,3 @@
+class PaymentPromisePresenter < BasePresenter
+
+end
