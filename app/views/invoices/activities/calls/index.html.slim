@@ -1,0 +1,25 @@
+= render 'components/breadcrumb',
+         links: [[invoices_sales_path, 'Facturas de Venta'],
+          [edit_invoices_sale_path(@sale), @sale.code],
+          [invoices_sale_activities_path(@sale), 'Actividades'],
+          ["Llamadas"]]
+hr
+.row
+  .col-md-3
+    = render 'invoices/activities/components/third_basic_data', sale: @sale
+
+    hr
+    .accordion id="userAccordion"
+      = render 'invoices/activities/components/third_full_data', sale: @sale
+      = render 'invoices/activities/components/third_contacts', sale: @sale
+
+  .col-md-9
+    = render 'invoices/activities/components/nav_tabs', sale: @sale
+    .tab-content
+      br
+      - if @calls.exists?
+        - @calls.each do |call|
+          = render 'invoices/activities/calls/call', call: call
+      - else
+        .alert.alert-secondary role="alert"
+          | No se han reportado actividades, presiona <a href="#{new_invoices_sale_activities_call_url(@sale)}" class="alert-link">aqui</a> para crear una.

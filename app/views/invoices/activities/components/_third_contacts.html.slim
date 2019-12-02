@@ -1,0 +1,9 @@
+.card
+  .card-header id="headingContacts"
+    h2.mb-0
+      button.btn.btn-link data-toggle="collapse" data-target="#collapseContacts" aria-expanded="true" aria-controls="collapseContacts"
+        | Contactos
+  .collapse aria-labelledby="headingContacts" data-parent="#userAccordion" id="collapseContacts"
+    .card-body
+      - sale.third.contacts.each do |contact|
+        = render '/invoices/contacts/contact', contact: contact

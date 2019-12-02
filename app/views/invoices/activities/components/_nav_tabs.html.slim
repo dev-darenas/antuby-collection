@@ -1,0 +1,13 @@
+ul.nav.nav-tabs
+  li.nav-item
+    = link_to 'Actividades', invoices_sale_activities_path(@sale), class: "nav-link #{controller_name == 'activities' ? 'active' : ''}"
+  li.nav-item
+    = link_to 'Llamadas', invoices_sale_activities_calls_path(@sale), class: "nav-link #{controller_name == 'calls' ? 'active' : ''}"
+  li.nav-item
+    = link_to 'Email', invoices_sale_activities_emails_path(@sale), class: "nav-link #{controller_name == 'emails' ? 'active' : ''}"
+  li.nav-item
+    = link_to 'Promesas de Pago', invoices_sale_activities_payment_promises_path(@sale), class: "nav-link #{controller_name == 'payment_promises' ? 'active' : ''}"
+  li.nav-item
+    = link_to 'Tareas', invoices_sale_activities_todos_path(@sale), class: "nav-link #{controller_name == 'todos' ? 'active' : ''}"
+  li.nav-item
+    = link_to 'Visitas', invoices_sale_activities_visits_path(@sale), class: "nav-link #{controller_name == 'visits' ? 'active' : ''}"

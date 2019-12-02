@@ -5,36 +5,12 @@
 hr
 .row
   .col-md-3
-    .card
-      .card-body
-        p.card-text
-          h3 = @sale.third_name
-          br = @sale.third_email
+    = render 'invoices/activities/components/third_basic_data', sale: @sale
 
-          hr
-          = render '/components/activities_links'
     hr
     .accordion id="userAccordion"
-      .card
-        .card-header id="headingUserInfo"
-          h2.mb-0
-            button.btn.btn-link data-toggle="collapse" data-target="#collapseInfo" aria-expanded="true" aria-controls="collapseInfo"
-              | Información
-        .collapse aria-labelledby="headingUserInfo" data-parent="#userAccordion" id="collapseInfo"
-          .card-body
-            br = @sale.third_cellphone
-            br = @sale.third_phone
-            br = @sale.third_address_description
-
-      .card
-        .card-header id="headingContacts"
-          h2.mb-0
-            button.btn.btn-link data-toggle="collapse" data-target="#collapseContacts" aria-expanded="true" aria-controls="collapseContacts"
-              | Contactos
-        .collapse aria-labelledby="headingContacts" data-parent="#userAccordion" id="collapseContacts"
-          .card-body
-            - @sale.third.contacts.each do |contact|
-              = render contact
+      = render 'invoices/activities/components/third_full_data', sale: @sale
+      = render 'invoices/activities/components/third_contacts', sale: @sale
 
   .col-md-9
     ul.nav.nav-tabs
@@ -49,6 +25,7 @@ hr
       li.nav-item
         = link_to 'Tareas', invoices_sale_activities_todos_path(@sale), class: 'nav-link'
     .tab-content
+      br
       - if @activities.exists?
         - @activities.each do |activity|
           = render activity
