@@ -33,7 +33,7 @@
   = f.label :collection_advisor, class: 'col-sm-2 col-form-label'
   .col-sm-10
     = f.collection_select :collection_advisor_id,
-                          User.all,
+                          @enterprise.users,
                           :id,
                           :name,
                           { include_blank: false },

@@ -4,10 +4,7 @@ module Thirds
     before_action :load_third, only: %w(edit update)
 
     def index
-      self.instance_variable_set(
-        "@#{@name_model.pluralize}",
-        @enterprise.try(@name_model.pluralize)
-      )
+      @pagy, @thirds = pagy(@enterprise.try(@name_model.pluralize))
     end
 
     def show

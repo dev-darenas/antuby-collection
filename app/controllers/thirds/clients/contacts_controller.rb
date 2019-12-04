@@ -4,7 +4,7 @@ module Thirds
       before_action :load_contact, only: %w(edit update)
 
       def index
-        @contacts = @client.contacts
+        @pagy, @contacts = pagy(@client.contacts)
       end
 
       def new

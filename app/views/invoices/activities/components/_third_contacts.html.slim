@@ -7,3 +7,5 @@
     .card-body
       - sale.third.contacts.each do |contact|
         = render '/invoices/contacts/contact', contact: contact
+
+  = link_to 'Nuevo Contactos', new_client_contact_path(sale.third_id), class: 'btn btn-primary'

@@ -4,12 +4,10 @@ module Invoices
     before_action :load_invoice, only: %w(edit update)
 
     def index
-      self.instance_variable_set(
-        "@#{@name_model}",
-        @enterprise.try(
-          @name_model
-        ).includes(:third)
-      )
+      @pagy, @sales = pagy(@enterprise.try(
+                            @name_model
+                          ).includes(:third)
+                      )
     end
 
     def new

@@ -15,4 +15,6 @@ class Activity < ApplicationRecord
   delegate :name, to: :collection_advisor, prefix: true
   delegate :name, to: :collector, prefix: true
   delegate :code, to: :invoice, prefix: true
+
+  scope :tasks, -> { pending.task }
 end
