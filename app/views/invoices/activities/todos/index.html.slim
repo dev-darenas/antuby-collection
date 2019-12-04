@@ -18,6 +18,9 @@ hr
     .tab-content
       br
       - if @todos.exists?
+        .text-right
+          = link_to 'Nueva Tarea', new_invoices_sale_activities_todo_path(@sale), class: 'btn btn-primary'
+        br
         - @todos.each do |todo|
           = render 'invoices/activities/todos/todo', todo: todo
       - else

@@ -3,7 +3,7 @@ module Invoices
     before_action :load_sale
 
     def index
-      @activities = @sale.activities
+      @pagy, @activities = pagy(@sale.activities.order(created_at: :desc))
     end
 
     private

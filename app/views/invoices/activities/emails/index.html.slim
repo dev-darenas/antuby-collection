@@ -18,6 +18,9 @@ hr
     .tab-content
       br
       - if @emails.exists?
+        .text-right
+          = link_to 'Nuevo Email', new_invoices_sale_activities_email_path(@sale), class: 'btn btn-primary'
+        br
         - @emails.each do |email|
           = render 'invoices/activities/emails/email', email: email
       - else

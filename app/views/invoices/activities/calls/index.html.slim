@@ -18,6 +18,9 @@ hr
     .tab-content
       br
       - if @calls.exists?
+        .text-right
+          = link_to 'Nueva Llamada', new_invoices_sale_activities_call_path(@sale), class: 'btn btn-primary'
+        br
         - @calls.each do |call|
           = render 'invoices/activities/calls/call', call: call
       - else

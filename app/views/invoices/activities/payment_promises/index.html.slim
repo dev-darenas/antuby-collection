@@ -18,7 +18,9 @@ hr
     .tab-content
       br
       - if @payment_promises.exists?
-        
+        .text-right
+          = link_to 'Nueva Promesa de Pago', new_invoices_sale_activities_payment_promise_path(@sale), class: 'btn btn-primary'
+        br
         - @payment_promises.each do |payment_promise|
           = render 'invoices/activities/payment_promises/payment_promise', payment_promise: payment_promise
       - else

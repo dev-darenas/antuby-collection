@@ -9,7 +9,8 @@ module Invoices
         self.instance_variable_set(
           "@#{@name_model.pluralize}",
           @sale.try(@name_model.pluralize)
-        )        
+            .order(created_at: :desc)
+        )
       end
 
       def new

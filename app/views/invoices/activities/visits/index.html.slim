@@ -18,6 +18,9 @@ hr
     .tab-content
       br
       - if @visits.exists?
+        .text-right
+          = link_to 'Nueva Visita', new_invoices_sale_activities_visit_path(@sale), class: 'btn btn-primary'
+        br
         - @visits.each do |visit|
           = render 'invoices/activities/visits/visit', visit: visit
       - else
