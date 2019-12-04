@@ -6,11 +6,10 @@ module Invoices
       before_action :load_activity, only: %w(edit update)
 
       def index
-        self.instance_variable_set(
-          "@#{@name_model.pluralize}",
-          @sale.try(@name_model.pluralize)
-            .order(created_at: :desc)
-        )
+        @pagy, @activities = pagy(
+                              @sale
+                              .try(@name_model.pluralize)
+                             )        
       end
 
       def new

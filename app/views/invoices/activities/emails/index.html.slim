@@ -17,12 +17,14 @@ hr
     = render 'invoices/activities/components/nav_tabs', sale: @sale
     .tab-content
       br
-      - if @emails.exists?
+      - if @activities.exists?
         .text-right
           = link_to 'Nuevo Email', new_invoices_sale_activities_email_path(@sale), class: 'btn btn-primary'
         br
-        - @emails.each do |email|
+        - @activities.each do |email|
           = render 'invoices/activities/emails/email', email: email
+
+        == pagy_bootstrap_nav(@pagy)
       - else
         .alert.alert-secondary role="alert"
           | No se han reportado actividades, presiona <a href="#{new_invoices_sale_activities_email_url(@sale)}" class="alert-link">aqui</a> para crear una.
