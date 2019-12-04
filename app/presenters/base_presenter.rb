@@ -9,7 +9,7 @@ class BasePresenter < SimpleDelegator
   end
 
   def created
-    @model.created_at.strftime("%d/%m/%Y")
+    @model.created_at.strftime("%d/%m/%Y %H:%M")
   end
 
   def edit_link(*args)
