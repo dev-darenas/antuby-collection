@@ -1,0 +1,12 @@
+ul.nav.nav-tabs
+  li.nav-item
+    = link_to 'Cliente', edit_client_path(@client), class: "nav-link #{controller_name == 'clients' ? 'active' : ''}"
+  li.nav-item
+    = link_to 'Facturas', client_invoices_path(@client), class: "nav-link #{controller_name == 'invoices' ? 'active' : ''}"
+  li.nav-item
+    = link_to 'Contactos', client_contacts_path(@client), class: "nav-link #{controller_name == 'contacts' ? 'active' : ''}"
+
+.tab-content
+  .tab-pane.active
+    br
+    = yield

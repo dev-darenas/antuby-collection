@@ -1,6 +1,5 @@
 = render 'components/breadcrumb',
          links: [[clients_path, 'Clientes'], ["#{@client.name}"]]
 
-= render 'form'
-br
-= link_to 'Contactos', client_contacts_path(@client), class: 'btn btn-primary'
+= render 'components/navbar_clients' do
+  = render 'form'

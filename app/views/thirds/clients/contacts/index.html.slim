@@ -3,8 +3,9 @@
            [edit_client_path(@client), @client.name], 
            ['Contactos'] ]
 
-= link_to 'nuevo', new_client_contact_path, class: 'btn btn-primary'
-= render 'components/table',
-         records: @contacts,
-         new_record: new_client_contact_path,
-         edit_arg: [@client]
+= render 'components/navbar_clients' do
+  = link_to 'nuevo', new_client_contact_path, class: 'btn btn-primary'
+  = render 'components/table',
+          records: @contacts,
+          new_record: new_client_contact_path,
+          edit_arg: [@client]

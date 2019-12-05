@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   scope module: 'thirds' do
     resources :clients do
       resources :contacts, module: 'clients'
+      resources :invoices, module: 'clients', only: :index
     end
   end
 

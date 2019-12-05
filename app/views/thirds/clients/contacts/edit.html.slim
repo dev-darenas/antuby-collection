@@ -4,4 +4,5 @@
            [client_contacts_path(@client),'Contactos'],
            [@contact.full_name] ]
 
-= render 'form'
+= render 'components/navbar_clients' do
+  = render 'form'
