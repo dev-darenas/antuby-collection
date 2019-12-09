@@ -1,0 +1,11 @@
+= form_with model: @sale do |f|
+  = f.fields_for :third do |third_form|
+    = third_form.hidden_field :enterprise_id, value: @sale.enterprise_id
+    = third_form.hidden_field :type, value: 'Client'
+
+    h4 Nuevo Cliente
+    hr
+
+    = render 'thirds/form_fields', f: third_form
+    = link_to 'Cancelar', new_invoices_sale_path
+hr

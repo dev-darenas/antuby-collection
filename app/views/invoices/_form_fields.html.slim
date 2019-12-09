@@ -1,12 +1,16 @@
-.form-group.row
-  = f.label :cliente, class: 'col-sm-2 col-form-label'
-  .col-sm-10
-    = f.collection_select :third_id,
-                          @enterprise.clients,
-                          :id,
-                          :name,
-                          { include_blank: false },
-                          { class: 'form-control' }
+#third
+  .form-group.row
+    = f.label :cliente, class: 'col-sm-2 col-form-label'
+    .col-sm-10.input-group
+      = f.collection_select :third_id,
+                            @enterprise.clients,
+                            :id,
+                            :name,
+                            { include_blank: false },
+                            { class: 'form-control' }
+      - if @sale.id.nil?                     
+        .input-group-append
+          = link_to 'Nuevo', new_invoices_sales_client_path, class: 'btn btn-outline-primary', remote: true
 
 .form-group.row
   = f.label :code, class: 'col-sm-2 col-form-label'

@@ -25,7 +25,7 @@ module Invoices
 
       invoice = self.instance_variable_get("@#{@name_model.singularize}")
       if invoice.save
-        flash[:success] = 'Cliente creado'
+        flash[:success] = 'Factura Creada'
         # TODO: :invoices_sale should be dinamic
         redirect_to polymorphic_url(
                       :invoices_sale,
@@ -56,7 +56,16 @@ module Invoices
           :creation_date,
           :expiration_date,
           :description,
-          :total
+          :total,
+          third_attributes: [
+            :enterprise_id,
+            :type,
+            :name,
+            :email,
+            :cellphone,
+            :phone,
+            :address_description
+          ] 
         )
     end
 

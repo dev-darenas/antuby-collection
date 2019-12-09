@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   end
 
   namespace :invoices do
+    namespace :sales do
+      resources :clients, only: :new
+    end
+
     resources :sales do
       resources :activities, only: :index
       namespace :activities do
