@@ -1,15 +1,5 @@
-h1 Usuarios
+= render 'components/breadcrumb',
+         links: [['Usuarios']]
 
-table
-  tr
-    th Nombre
-    th Rol
-    th 
-  tbody
-    - @users.each do |user|
-      tr
-        td = user.name
-        td = user.roles.first.name_es
-        td = link_to 'Editar', edit_user_path(user)
-
-= link_to 'nuevo', new_user_path
+= link_to 'Nueva', new_user_path, class: 'btn btn-primary'
+= render 'components/table', records: @users

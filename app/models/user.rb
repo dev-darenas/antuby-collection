@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  after_create :added_role
+
   # relations
   belongs_to :enterprise, autosave: true
   accepts_nested_attributes_for :enterprise
@@ -25,5 +27,9 @@ class User < ApplicationRecord
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def added_role
+    add_role(:admin)
   end
 end

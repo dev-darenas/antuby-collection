@@ -1,29 +1,44 @@
 = form_with model: @user do |f|
 
-  = f.label :email
-  = f.email_field :email
+  .form-group.row
+    = f.label :email, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.email_field :email, class: 'form-control'
 
-  = f.label :first_name
-  = f.text_field :first_name
+  .form-group.row
+    = f.label :first_name, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.text_field :first_name, class: 'form-control'
 
-  = f.label :last_name
-  = f.text_field :last_name
+  .form-group.row
+    = f.label :last_name, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.text_field :last_name, class: 'form-control'
 
-  = f.label :current_password
-  = f.password_field :current_password
+  .form-group.row
+    = f.label :current_password, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.password_field :current_password, class: 'form-control'
+      small Para editar el password, es necesario el password actual
 
-  = f.label :password
-  = f.password_field :password
+  .form-group.row
+    = f.label :password, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.password_field :password, class: 'form-control'
 
-  = f.label :password_confirmation
-  = f.password_field :password_confirmation
+  .form-group.row
+    = f.label :password_confirmation, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.password_field :password_confirmation, class: 'form-control'
 
-  = f.label :rols
-  = f.collection_select 'role_ids',
-                        Role.all,
-                        :id,
-                        :name_es,
-                        { include_blank: false },
-                        { name: 'user[role_ids][]' }
+  .form-group.row
+    = f.label :rols, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.collection_select 'role_ids',
+                            Role.all,
+                            :id,
+                            :name_es,
+                            { include_blank: false },
+                            { name: 'user[role_ids][]', class: 'form-control' }
 
-  = f.submit 'Create'
+  = f.submit 'Create', class: 'btn btn-primary'

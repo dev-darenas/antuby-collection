@@ -2,7 +2,7 @@ class UsersController < EnterpriseController
   before_action :load_user, only: %w(edit update)
 
   def index
-    @users = @enterprise.users
+    @pagy, @users = pagy(@enterprise.users)
   end
 
   def new

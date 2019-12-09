@@ -7,4 +7,15 @@ module ApplicationHelper
     return yield(presenter) if block_given?
     presenter
   end
+
+  FLASH_KEYS = {
+    notice: 'info',
+    success: 'success',
+    error: 'error',
+    alert: 'warning'
+  }.freeze
+
+  def flash_class(key)
+    FLASH_KEYS[key.to_sym]
+  end
 end

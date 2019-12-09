@@ -1,3 +1,4 @@
-h1 Usuarios > #{@user.name} > editar
+= render 'components/breadcrumb',
+         links: [[users_path, 'Usuarios'], ['Editar']]
 
 = render 'form'
