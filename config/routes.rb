@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
     resources :sales do
       resources :activities, only: :index
+      resources :payments
       namespace :activities do
         resources :visits
         resources :calls

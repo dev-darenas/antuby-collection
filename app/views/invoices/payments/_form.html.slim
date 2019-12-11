@@ -1,0 +1,18 @@
+= form_with model: [@sale, @payment], local: true do |f|
+
+  .form-group.row
+    = f.label :payment_date, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.date_select :payment_date
+
+  .form-group.row
+    = f.label :next_payment, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.date_select :next_payment
+
+  .form-group.row
+    = f.label :amount, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.text_field :amount
+  
+  = f.submit 'Guardar', class: 'btn btn-primary'

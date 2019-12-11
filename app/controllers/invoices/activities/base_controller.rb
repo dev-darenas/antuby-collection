@@ -58,13 +58,16 @@ module Invoices
         params
           .require("activities_#{@name_model.singularize}")
           .permit(
+            :title,
             :description,
             :status,
             :date_activity,
             :collection_advisor_id,
             :collector_id,
             :call_outcome,
+            :remind,
             :remember,
+            :due_date,
             :contact_id,
             :type_activity
           )

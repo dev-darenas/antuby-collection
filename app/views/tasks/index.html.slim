@@ -1,4 +1,8 @@
 = render 'components/breadcrumb',
          links: [['Tareas']]
 
-= render 'components/table', records: @tasks, presenter_class: TaskPresenter
+- if !@tasks.length.zero?
+  = render 'components/table', records: @tasks, presenter_class: TaskPresenter
+- else
+  .alert.alert-warning
+    | No Tienes tareas pendientes

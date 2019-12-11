@@ -1,0 +1,7 @@
+= render 'components/breadcrumb',
+         links: [[invoices_sales_path, 'Facturas de Venta'],
+          [edit_invoices_sale_path(@sale), @sale.code],
+          [invoices_sale_payments_path(@sale), 'Pagos'],
+          ['Nuevo']]
+
+= render 'form'

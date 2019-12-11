@@ -11,7 +11,7 @@ module ApplicationHelper
   FLASH_KEYS = {
     notice: 'info',
     success: 'success',
-    error: 'error',
+    error: 'danger',
     alert: 'warning'
   }.freeze
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_15_221555) do
+ActiveRecord::Schema.define(version: 2019_12_10_203434) do
 
   create_table "activities", force: :cascade do |t|
     t.integer "third_id", null: false
@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(version: 2019_11_15_221555) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "contact_id"
     t.datetime "remember"
+    t.datetime "due_date"
+    t.string "title"
+    t.boolean "remind", default: false
     t.index ["contact_id"], name: "index_activities_on_contact_id"
     t.index ["enterprise_id"], name: "index_activities_on_enterprise_id"
     t.index ["invoice_id"], name: "index_activities_on_invoice_id"
@@ -76,6 +79,7 @@ ActiveRecord::Schema.define(version: 2019_11_15_221555) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "payment_date"
     t.index ["enterprise_id"], name: "index_invoices_on_enterprise_id"
     t.index ["third_id"], name: "index_invoices_on_third_id"
   end
@@ -103,6 +107,17 @@ ActiveRecord::Schema.define(version: 2019_11_15_221555) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["option_type_id"], name: "index_option_values_on_option_type_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "invoice_id", null: false
+    t.datetime "payment_date"
+    t.date "next_payment"
+    t.float "amount"
+    t.integer "reported_by_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["invoice_id"], name: "index_payments_on_invoice_id"
   end
 
   create_table "product_option_types", force: :cascade do |t|
@@ -191,6 +206,7 @@ ActiveRecord::Schema.define(version: 2019_11_15_221555) do
   add_foreign_key "invoices", "thirds"
   add_foreign_key "option_value_variants", "option_values"
   add_foreign_key "option_value_variants", "variants"
+  add_foreign_key "payments", "invoices"
   add_foreign_key "product_option_types", "option_types"
   add_foreign_key "product_option_types", "products"
   add_foreign_key "thirds", "enterprises"

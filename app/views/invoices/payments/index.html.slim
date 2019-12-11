@@ -1,0 +1,9 @@
+= render 'components/breadcrumb',
+         links: [[invoices_sales_path, 'Facturas de Venta'],
+          [edit_invoices_sale_path(@sale), @sale.code],
+          ['Pagos']]
+
+= link_to 'Nuevo', new_invoices_sale_payment_path(@sale), class: 'btn btn-primary'
+= render 'components/table',
+         records: @payments,
+         new_record: new_invoices_sale_payment_path(@sale)

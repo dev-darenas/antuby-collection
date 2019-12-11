@@ -1,4 +1,6 @@
 class BasePresenter < SimpleDelegator
+  DATE_FORMAT = "%d/%m/%Y %H:%M".freeze
+
   def initialize(model, view)
     @model, @view = model, view
     super(@model)
@@ -9,7 +11,7 @@ class BasePresenter < SimpleDelegator
   end
 
   def created
-    @model.created_at.strftime("%d/%m/%Y %H:%M")
+    @model.created_at.strftime(DATE_FORMAT)
   end
 
   def edit_link(*args)
