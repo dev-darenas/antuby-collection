@@ -34,7 +34,7 @@
             a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
               = current_user.name
             div.dropdown-menu aria-labelledby="navbarDropdown"
-              = link_to 'Ventas', '#', class: 'dropdown-item'
+              = link_to 'Perfil', edit_user_path(current_user), class: 'dropdown-item'
               = link_to 'Cobranza', '#', class: 'dropdown-item'
               .dropdown-divider
               = link_to 'Salir', destroy_user_session_path, method: :delete, class: 'dropdown-item'
