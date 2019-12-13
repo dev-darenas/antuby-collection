@@ -42,6 +42,19 @@ module Invoices
     end
 
     def update
+      invoice = self.instance_variable_get("@#{@name_model.singularize}")
+      if invoice.update(invoices_params)
+        flash[:success] = 'Factura Actualizada'
+      else
+        flash[:error] = invoice.errors.details
+      end
+
+      # TODO: :invoices_sale should be dinamic
+      redirect_to polymorphic_url(
+                    :invoices_sale,
+                    action: :edit,
+                    id: invoice.id
+                  )
     end
 
     private

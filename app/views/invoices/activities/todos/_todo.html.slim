@@ -1,12 +1,36 @@
-- todo = presenter(todo)
-.card
+- todo = presenter(todo || object)
+.card id="activity_#{todo.id}"
   .card-body
     .card-title.d-flex
       i.fas.fa-tasks
+      = link_to todo.title, edit_invoices_sale_activities_todo_path(todo.invoice, todo), target: '_blank'
+      = todo.overdue
       .ml-auto
         = todo.created
     = todo.description
-  .card-footer
-    =link_to 'Editar', edit_invoices_sale_activities_todo_path(@sale, todo)
+    hr
+    .row
+      .col-md-4
+        p Asignado a: #{todo.collection_advisor_name}
+        p Tipo: #{todo.type_activity}
+      .col-md-4
+        - if todo.task?
+          p Fecha Vencimiento: #{todo.date_task}
+          p Tipo: #{todo.status}
+      .col-md-4
+        p 
+          | Factura: 
+          = link_to todo.invoice_code, edit_invoices_sale_path(todo.invoice)
+
+  .card-footer.d-flex
+    - if todo.pending_task?
+      = form_with scope: :activity, url: invoices_sale_activity_path(todo.invoice, todo), method: :patch  do |f|
+        .form-row.align-items-center
+          = f.hidden_field :status, value: :succes
+
+          .col-auto
+            = f.submit 'Hecho', class: 'btn btn-secondary'
+    .ml-auto
+      =link_to 'Editar', edit_invoices_sale_activities_todo_path(todo.invoice, todo)
 
 hr

@@ -1,12 +1,41 @@
-- call = presenter(call)
-.card
+- call = presenter(call || object)
+.card id="activity_#{call.id}"
   .card-body
     .card-title.d-flex
       i.fas.fa-phone-volume
+      = link_to call.title, edit_invoices_sale_activities_call_path(call.invoice, call), target: '_blank'
+      = call.overdue
       .ml-auto
         = call.created
     = call.description
-  .card-footer
-    =link_to 'Editar', edit_invoices_sale_activities_call_path(@sale, call)
+    hr
+    .row
+      .col-md-4
+        p Asignado a: #{call.collection_advisor_name}
+        p Tipo: #{call.type_activity}
+        - if call.succes?
+          p Resultado de Llamada: #{call.call_outcome}
+      .col-md-4
+        - if call.task?
+          p Fecha Vencimiento: #{call.date_task}
+          p Tipo: #{call.status}
+      .col-md-4
+        p 
+          | Factura: 
+          = link_to call.invoice_code, edit_invoices_sale_path(call.invoice)
 
+  .card-footer.d-flex
+    - if call.pending_task?
+      = form_with scope: :activity, url: invoices_sale_activity_path(call.invoice, call), method: :patch  do |f|
+        .form-row.align-items-center
+          = f.hidden_field :status, value: :succes
+          .col-auto
+            = f.select :call_outcome,
+                      Activities::Call.call_outcomes.keys.map{ |c| [c.titleize, c] },
+                      {},
+                      { class: 'form-control' }
+          .col-auto
+            = f.submit 'Hecho', class: 'btn btn-secondary'
+    .ml-auto
+      = link_to 'Editar', edit_invoices_sale_activities_call_path(call.invoice, call)
 hr

@@ -1,3 +1,3 @@
-class VisitPresenter < BasePresenter
+class VisitPresenter < ActivityPresenter
 
 end

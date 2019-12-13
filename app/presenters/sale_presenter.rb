@@ -5,9 +5,13 @@ class SalePresenter < BasePresenter
       code: 'code',
       third_name: 'Nombre',
       total: 'total',
-      balance: 'balance',
+      balance: 'Saldo',
       expiration: 'Fecha de pago'
     }
+  end
+
+  def creation
+    creation_date.strftime(DATE_FORMAT)
   end
 
   def expiration

@@ -10,8 +10,11 @@ Rails.application.routes.draw do
 
   scope module: 'thirds' do
     resources :clients do
-      resources :contacts, module: 'clients'
-      resources :invoices, module: 'clients', only: :index
+      scope module: :clients do
+        resources :contacts
+        resources :invoices, only: :index
+        resources :activities, only: :index
+      end
     end
   end
 
@@ -21,7 +24,7 @@ Rails.application.routes.draw do
     end
 
     resources :sales do
-      resources :activities, only: :index
+      resources :activities, only: [:index, :update]
       resources :payments
       namespace :activities do
         resources :visits

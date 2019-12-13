@@ -1,10 +1,11 @@
 class TasksController < EnterpriseController
   def index
     @pagy, @tasks = pagy(current_user.activities
-                            .includes(:invoice)
+                            .includes(
+                              invoice: [:third]
+                            )
                             .tasks
-                            .where('remember <= ?', Date.today.end_of_day)
-                            .order(remember: :desc)
+                            .today
                         )
   end
 end

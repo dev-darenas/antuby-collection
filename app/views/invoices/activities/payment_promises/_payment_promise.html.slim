@@ -1,12 +1,36 @@
-- payment_promise = presenter(payment_promise)
-.card
+- payment_promise = presenter(payment_promise || object)
+.card id="activity_#{payment_promise.id}"
   .card-body
     .card-title.d-flex
       i.fas.fa-money-bill
+      = link_to payment_promise.title, edit_invoices_sale_activities_payment_promise_path(payment_promise.invoice, payment_promise), target: '_blank'
+      = payment_promise.overdue
       .ml-auto
         = payment_promise.created
     = payment_promise.description
-  .card-footer
-    =link_to 'Editar', edit_invoices_sale_activities_payment_promise_path(@sale, payment_promise)
+    hr
+    .row
+      .col-md-4
+        p Asignado a: #{payment_promise.collection_advisor_name}
+        p Tipo: #{payment_promise.type_activity}
+      .col-md-4
+        - if payment_promise.task?
+          p Fecha Vencimiento: #{payment_promise.date_task}
+          p Tipo: #{payment_promise.status}
+      .col-md-4
+        p 
+          | Factura: 
+          = link_to payment_promise.invoice_code, edit_invoices_sale_path(payment_promise.invoice)
+
+  .card-footer.d-flex
+    - if payment_promise.pending_task?
+      = form_with scope: :activity, url: invoices_sale_activity_path(payment_promise.invoice, payment_promise), method: :patch  do |f|
+        .form-row.align-items-center
+          = f.hidden_field :status, value: :succes
+
+          .col-auto
+            = f.submit 'Hecho', class: 'btn btn-secondary'
+    .ml-auto
+      =link_to 'Editar', edit_invoices_sale_activities_payment_promise_path(payment_promise.invoice, payment_promise)
 
 hr

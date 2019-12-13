@@ -3,6 +3,7 @@ class Third < ApplicationRecord
   has_one :address, as: :addressable
   has_many :contacts
   has_many :invoices
+  has_many :activities, through: :invoices
 
   delegate :description, :description=,
            to: :find_or_build_address,

@@ -1,3 +1,2 @@
-class PaymentPromisePresenter < BasePresenter
-
+class PaymentPromisePresenter < ActivityPresenter
 end

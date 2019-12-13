@@ -30,8 +30,8 @@ module Invoices
                   )
         
         if activity.save
-          flash[:success] = 'Actividad creado'
-          redirect_to invoices_sale_activities_path(@sale)
+          flash[:success] = 'Actividad Creada'
+          redirect_to edit_polymorphic_path([@sale, activity])
         else
           flash.now[:error] = activity.errors.details
           redirect_to :new
@@ -43,13 +43,12 @@ module Invoices
       def update
         activity = self.instance_variable_get("@#{@name_model.singularize}")
         if activity.update(activity_params)
-          flash[:success] = 'Actividad creado'
+          flash[:success] = 'Actividad Actualizado'
         else
           flash[:error] = activity.errors.details
-          redirect_to :edit
         end
 
-        redirect_to invoices_sale_activities_path(@sale)
+        redirect_to edit_polymorphic_path([@sale, activity])
       end
       
       private

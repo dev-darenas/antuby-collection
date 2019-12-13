@@ -1,3 +1,2 @@
-class CallPresenter < BasePresenter
-
+class CallPresenter < ActivityPresenter
 end

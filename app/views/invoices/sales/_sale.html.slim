@@ -1,0 +1,14 @@
+- sale = presenter(sale)
+.card
+  .card-body
+    .card-title
+      = link_to sale.code, edit_invoices_sale_path(sale)
+    p.card-text
+      | Total: #{sale.total}
+      br
+      | Saldo: #{sale.balance}
+      br
+      | Fecha creación: #{sale.creation}
+      br
+      | Fecha Expiración: #{sale.expiration}
+

@@ -1,12 +1,36 @@
-- email = presenter(email)
-.card
+- email = presenter(email || object)
+.card id="activity_#{email.id}"
   .card-body
     .card-title.d-flex
       i.fas.fa-envelope
+      = link_to email.title, edit_invoices_sale_activities_email_path(email.invoice, email), target: '_blank'
+      = email.overdue
       .ml-auto
         = email.created
     = email.description
-  .card-footer
-    =link_to 'Editar', edit_invoices_sale_activities_email_path(@sale, email)
+    hr
+    .row
+      .col-md-4
+        p Asignado a: #{email.collection_advisor_name}
+        p Tipo: #{email.type_activity}
+      .col-md-4
+        - if email.task?
+          p Fecha Vencimiento: #{email.date_task}
+          p Tipo: #{email.status}
+      .col-md-4
+        p 
+          | Factura: 
+          = link_to email.invoice_code, edit_invoices_sale_path(email.invoice)
+        
+  .card-footer.d-flex
+    - if email.pending_task?
+      = form_with scope: :activity, url: invoices_sale_activity_path(email.invoice, email), method: :patch  do |f|
+        .form-row.align-items-center
+          = f.hidden_field :status, value: :succes
+
+          .col-auto
+            = f.submit 'Hecho', class: 'btn btn-secondary'
+    .ml-auto
+      =link_to 'Editar', edit_invoices_sale_activities_email_path(email.invoice, email)
 
 hr

@@ -25,9 +25,7 @@ class OptionTypesController < EnterpriseController
   end
 
   def update
-    @option_type.update(option_type_params)
-
-    if @option_type.save
+    if @option_type.update(option_type_params)
       flash[:success] = 'Tipo actualizado'
     else
       flash[:error] = @option_type.errors.details

@@ -15,6 +15,12 @@ class Activity < ApplicationRecord
   delegate :name, to: :collection_advisor, prefix: true
   delegate :name, to: :collector, prefix: true
   delegate :code, to: :invoice, prefix: true
+  delegate :third_name, to: :invoice, prefix: true
 
   scope :tasks, -> { pending.task }
+  scope :today, -> {
+    tasks
+    .where('due_date <= ?', Date.today.end_of_day)
+    .order(remember: :desc)
+  }
 end

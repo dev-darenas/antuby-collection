@@ -1,3 +1,2 @@
-class EmailPresenter < BasePresenter
-
+class EmailPresenter < ActivityPresenter
 end

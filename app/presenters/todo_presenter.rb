@@ -1,3 +1,3 @@
-class TodoPresenter < BasePresenter
+class TodoPresenter < ActivityPresenter
 
 end

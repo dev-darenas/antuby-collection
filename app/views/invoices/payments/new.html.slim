@@ -4,4 +4,8 @@
           [invoices_sale_payments_path(@sale), 'Pagos'],
           ['Nuevo']]
 
-= render 'form'
+.row
+  .col-md-3
+    = render @sale
+  .col-md-9
+    = render 'form'

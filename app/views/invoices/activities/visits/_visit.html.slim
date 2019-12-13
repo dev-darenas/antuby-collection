@@ -1,12 +1,35 @@
-- visit = presenter(visit)
-.card
+- visit = presenter(visit || object)
+.card id="activity_#{visit.id}"
   .card-body
     .card-title.d-flex
       i.fas.fa-motorcycle
+      = link_to visit.title, edit_invoices_sale_activities_visit_path(visit.invoice, visit), target: '_blank'
+      = visit.overdue
       .ml-auto
         = visit.created
     = visit.description
-  .card-footer
-    =link_to 'Editar', edit_invoices_sale_activities_visit_path(@sale, visit)
+    hr
+    .row
+      .col-md-4
+        p Asignado a: #{visit.collection_advisor_name}
+        p Tipo: #{visit.type_activity}
+      .col-md-4
+        - if visit.task?
+          p Fecha Vencimiento: #{visit.date_task}
+          p Tipo: #{visit.status}
+      .col-md-4
+        p 
+          | Factura: 
+          = link_to visit.invoice_code, edit_invoices_sale_path(visit.invoice)
 
+  .card-footer.d-flex
+    - if visit.pending_task?
+      = form_with scope: :activity, url: invoices_sale_activity_path(visit.invoice, visit), method: :patch  do |f|
+        .form-row.align-items-center
+          = f.hidden_field :status, value: :succes
+
+          .col-auto
+            = f.submit 'Hecho', class: 'btn btn-secondary'
+    .ml-auto
+      =link_to 'Editar', edit_invoices_sale_activities_visit_path(visit.invoice, visit)
 hr

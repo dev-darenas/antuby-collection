@@ -1,4 +1,4 @@
-= form_with model: [@sale, @call] do |f|
+= form_with model: [@sale, @call], local: true do |f|
 
   = render '/invoices/activities/common_field', f: f
 
