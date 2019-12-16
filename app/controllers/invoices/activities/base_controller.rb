@@ -25,7 +25,8 @@ module Invoices
                     .new(activity_params
                     .merge!(
                       third_id: @sale.third_id,
-                      enterprise_id: @sale.enterprise_id
+                      enterprise_id: @sale.enterprise_id,
+                      created_by_id: current_user.id
                     )
                   )
         

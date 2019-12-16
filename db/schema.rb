@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_10_203434) do
+ActiveRecord::Schema.define(version: 2019_12_16_164810) do
 
   create_table "activities", force: :cascade do |t|
     t.integer "third_id", null: false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_12_10_203434) do
     t.datetime "due_date"
     t.string "title"
     t.boolean "remind", default: false
+    t.integer "created_by_id"
     t.index ["contact_id"], name: "index_activities_on_contact_id"
     t.index ["enterprise_id"], name: "index_activities_on_enterprise_id"
     t.index ["invoice_id"], name: "index_activities_on_invoice_id"

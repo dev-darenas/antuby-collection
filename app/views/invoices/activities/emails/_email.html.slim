@@ -21,6 +21,7 @@
         p 
           | Factura: 
           = link_to email.invoice_code, edit_invoices_sale_path(email.invoice)
+        p Creado por: #{email.created_by_name}
         
   .card-footer.d-flex
     - if email.pending_task?

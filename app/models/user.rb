@@ -15,9 +15,13 @@ class User < ApplicationRecord
    # User with Collection Advisor role relation wit activities
    # User with debt collector role relation wit activities
   has_many :activities,
-    -> { where type_activity: :task },
-    foreign_key: :collection_advisor_id,
-    class_name: 'Activity'
+           -> { where type_activity: :task },
+           foreign_key: :collection_advisor_id,
+           class_name: 'Activity'
+
+  has_many :activities_created,
+           foreign_key: :created_by_id,
+           class_name: 'Activity'
 
   delegate :name, :name=, to: :enterprise, prefix: true, allow_nil: true
 

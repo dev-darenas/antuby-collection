@@ -21,6 +21,7 @@
         p 
           | Factura: 
           = link_to todo.invoice_code, edit_invoices_sale_path(todo.invoice)
+        p Creado por: #{todo.created_by_name}
 
   .card-footer.d-flex
     - if todo.pending_task?

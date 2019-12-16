@@ -23,6 +23,7 @@
         p 
           | Factura: 
           = link_to call.invoice_code, edit_invoices_sale_path(call.invoice)
+        p Creado por: #{call.created_by_name}
 
   .card-footer.d-flex
     - if call.pending_task?

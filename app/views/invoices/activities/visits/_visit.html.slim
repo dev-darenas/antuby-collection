@@ -21,6 +21,7 @@
         p 
           | Factura: 
           = link_to visit.invoice_code, edit_invoices_sale_path(visit.invoice)
+        p Creado por: #{visit.created_by_name}
 
   .card-footer.d-flex
     - if visit.pending_task?
