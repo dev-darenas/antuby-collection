@@ -7,7 +7,7 @@ class TaskPresenter < ActivityPresenter
       title: 'Titulo',
       description: 'Descripción',
       created: 'Fecha de Creación',
-      date_task: 'Fecha de la Tarea',
+      date_task: 'Fecha de la Tarea'
     }
   end
 

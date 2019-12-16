@@ -7,8 +7,7 @@ module Thirds
       @pagy, @thirds = pagy(@enterprise.try(@name_model.pluralize))
     end
 
-    def show
-    end
+    def show; end
   
     def new
       self.instance_variable_set(
