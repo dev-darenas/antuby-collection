@@ -21,6 +21,6 @@ class Activity < ApplicationRecord
   scope :today, -> {
     tasks
     .where('due_date <= ?', Date.today.end_of_day)
-    .order(remember: :desc)
+    .order(due_date: :asc)
   }
 end

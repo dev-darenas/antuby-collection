@@ -1,0 +1,13 @@
+.card
+  .card-header id="payment_data"
+    h2.mb-0
+      button.btn.btn-link data-toggle="collapse" data-target="#paymentInfo" aria-expanded="true" aria-controls="paymentInfo"
+        | Información de Pagos
+  .collapse aria-labelledby="payment_data" data-parent="#userAccordion" id="paymentInfo"
+    .card-body
+      p Total: #{sale.total}
+      p Saldo: #{sale.balance}
+      p Fecha de Vencimiento: #{sale.expiration_date}
+      - if sale.payments.exists?
+        p Fecha Ultimos Pago: #{sale.payments.last.payment_date}
+        p Valor Ultimos Pago: #{sale.payments.last.amount}
