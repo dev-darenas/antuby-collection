@@ -11,3 +11,5 @@
       - if sale.payments.exists?
         p Fecha Ultimos Pago: #{sale.payments.last.payment_date}
         p Valor Ultimos Pago: #{sale.payments.last.amount}
+
+      = link_to 'Crear Pago', new_invoices_sale_payment_path(sale), class: 'btn btn-primary'
