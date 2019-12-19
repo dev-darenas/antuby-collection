@@ -23,6 +23,8 @@ class User < ApplicationRecord
            foreign_key: :created_by_id,
            class_name: 'Activity'
 
+  has_many :notes
+
   delegate :name, :name=, to: :enterprise, prefix: true, allow_nil: true
 
   def enterprise

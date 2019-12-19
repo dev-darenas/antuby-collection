@@ -16,14 +16,19 @@
       .col-md-4
         - if email.task?
           p Fecha Vencimiento: #{email.date_task}
-          p Tipo: #{email.status}
+          p Estado: #{email.status}
       .col-md-4
         p 
           | Factura: 
           = link_to email.invoice_code, edit_invoices_sale_path(email.invoice)
         p Creado por: #{email.created_by_name}
-        
+
+    = render 'components/notes', model: Activities::Email, object: email
   .card-footer.d-flex
+    = link_to 'Agregar Nota',
+              new_note_path(model: Activities::Email, id: email.id),
+              data: { remote: true }
+
     - if email.pending_task?
       = form_with scope: :activity, url: invoices_sale_activity_path(email.invoice, email), method: :patch  do |f|
         .form-row.align-items-center

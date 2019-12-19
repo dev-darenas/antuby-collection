@@ -1,0 +1,3 @@
+class NotePresenter < BasePresenter
+
+end

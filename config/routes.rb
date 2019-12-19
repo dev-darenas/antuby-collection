@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   resources :option_types
   resources :users
   resources :tasks, only: :index
+  resources :notes
 
   devise_for :users, path: 'user', controllers: {
     registrations: 'users/registrations',

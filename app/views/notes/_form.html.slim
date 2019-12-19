@@ -1,0 +1,6 @@
+= form_with model: @note do |f|
+  = f.hidden_field :notable_type
+  = f.hidden_field :notable_id
+
+  = f.text_area :description, class: 'form-control'
+  = f.submit 'Actualizar', class: 'btn btn-primary'

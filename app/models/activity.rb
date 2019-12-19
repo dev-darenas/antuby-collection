@@ -1,4 +1,6 @@
 class Activity < ApplicationRecord
+  include Notable
+
   belongs_to :invoice
   enum status: %w(pending cancel succes)
   enum type_activity: %w(task log)
@@ -14,7 +16,8 @@ class Activity < ApplicationRecord
 
   belongs_to :created_by,
              foreign_key: :created_by_id,
-             class_name: 'User'
+             class_name: 'User',
+             optional: true
 
   delegate :name, to: :collection_advisor, prefix: true
   delegate :name, to: :collector, prefix: true

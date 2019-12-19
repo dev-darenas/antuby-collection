@@ -16,14 +16,19 @@
       .col-md-4
         - if visit.task?
           p Fecha Vencimiento: #{visit.date_task}
-          p Tipo: #{visit.status}
+          p Estado: #{visit.status}
       .col-md-4
         p 
           | Factura: 
           = link_to visit.invoice_code, edit_invoices_sale_path(visit.invoice)
         p Creado por: #{visit.created_by_name}
 
+    = render 'components/notes', model: Activities::Visit, object: visit
   .card-footer.d-flex
+    = link_to 'Agregar Nota',
+              new_note_path(model: Activities::Visit, id: visit.id),
+              data: { remote: true }
+
     - if visit.pending_task?
       = form_with scope: :activity, url: invoices_sale_activity_path(visit.invoice, visit), method: :patch  do |f|
         .form-row.align-items-center

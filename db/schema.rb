@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_164810) do
+ActiveRecord::Schema.define(version: 2019_12_18_171421) do
 
   create_table "activities", force: :cascade do |t|
     t.integer "third_id", null: false
@@ -83,6 +83,17 @@ ActiveRecord::Schema.define(version: 2019_12_16_164810) do
     t.date "payment_date"
     t.index ["enterprise_id"], name: "index_invoices_on_enterprise_id"
     t.index ["third_id"], name: "index_invoices_on_third_id"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.text "description"
+    t.string "notable_type", null: false
+    t.integer "notable_id", null: false
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["notable_type", "notable_id"], name: "index_notes_on_notable_type_and_notable_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "option_types", force: :cascade do |t|

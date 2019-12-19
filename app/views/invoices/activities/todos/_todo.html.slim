@@ -16,14 +16,19 @@
       .col-md-4
         - if todo.task?
           p Fecha Vencimiento: #{todo.date_task}
-          p Tipo: #{todo.status}
+          p Estado: #{todo.status}
       .col-md-4
         p 
           | Factura: 
           = link_to todo.invoice_code, edit_invoices_sale_path(todo.invoice)
         p Creado por: #{todo.created_by_name}
 
+    = render 'components/notes', model: Activities::Todo, object: todo
   .card-footer.d-flex
+    = link_to 'Agregar Nota',
+              new_note_path(model: Activities::Todo, id: todo.id),
+              data: { remote: true }
+
     - if todo.pending_task?
       = form_with scope: :activity, url: invoices_sale_activity_path(todo.invoice, todo), method: :patch  do |f|
         .form-row.align-items-center

@@ -1,8 +1,14 @@
 = render 'components/breadcrumb',
          links: [['Tareas']]
 
-- if !@tasks.length.zero?
-  = render 'components/table', records: @tasks, presenter_class: TaskPresenter
-- else
-  .alert.alert-warning
-    | No Tienes tareas pendientes
+.tab-content
+  br
+  - if @tasks.exists?
+    - @tasks.each do |task|
+      = render "invoices/activities/#{task.class.name.demodulize.underscore.pluralize}/#{task.class.name.demodulize.underscore}",
+                object: task
+
+    == pagy_bootstrap_nav(@pagy)
+  - else
+    .alert.alert-secondary role="alert"
+      | No se han reportado actividades

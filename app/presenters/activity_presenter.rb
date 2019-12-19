@@ -1,6 +1,10 @@
 class ActivityPresenter < BasePresenter
   def date_task
-    @view.content_tag(:p, due_date.strftime(DATE_FORMAT), class: "text-#{overdue? ? 'danger' : 'warning' }")
+    @view.content_tag(
+            :p,
+            due_date.strftime(DATE_FORMAT),
+            class: "text-#{overdue? ? 'danger' : 'warning' }"
+          )
   end
 
   def pending_task?

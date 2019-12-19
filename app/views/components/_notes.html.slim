@@ -1,0 +1,7 @@
+.row
+  .col-md-12
+    . id="comments_#{model.table_name.singularize.camelize}_#{object.id}"
+
+    = link_to "Ver Notas (#{object.notes.count})",
+              notes_path(model: model, id: object.id),
+              data: { remote: true }

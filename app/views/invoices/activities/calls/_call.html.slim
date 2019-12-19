@@ -18,14 +18,17 @@
       .col-md-4
         - if call.task?
           p Fecha Vencimiento: #{call.date_task}
-          p Tipo: #{call.status}
+          p Estado: #{call.status}
       .col-md-4
         p 
           | Factura: 
           = link_to call.invoice_code, edit_invoices_sale_path(call.invoice)
         p Creado por: #{call.created_by_name}
-
+    = render 'components/notes', model: Activities::Call, object: call
   .card-footer.d-flex
+    = link_to 'Agregar Nota',
+              new_note_path(model: Activities::Call, id: call.id),
+              data: { remote: true }
     - if call.pending_task?
       = form_with scope: :activity, url: invoices_sale_activity_path(call.invoice, call), method: :patch  do |f|
         .form-row.align-items-center
@@ -36,7 +39,7 @@
                       {},
                       { class: 'form-control' }
           .col-auto
-            = f.submit 'Hecho', class: 'btn btn-secondary'
+            = f.submit 'Hecho', class: 'btn btn-secondary'  
     .ml-auto
       = link_to 'Editar', edit_invoices_sale_activities_call_path(call.invoice, call)
 hr

@@ -16,14 +16,19 @@
       .col-md-4
         - if payment_promise.task?
           p Fecha Vencimiento: #{payment_promise.date_task}
-          p Tipo: #{payment_promise.status}
+          p Estado: #{payment_promise.status}
       .col-md-4
         p 
           | Factura: 
           = link_to payment_promise.invoice_code, edit_invoices_sale_path(payment_promise.invoice)
         p Creado por: #{payment_promise.created_by_name}
 
+    = render 'components/notes', model: Activities::PaymentPromise, object: payment_promise
   .card-footer.d-flex
+    = link_to 'Agregar Nota',
+              new_note_path(model: Activities::PaymentPromise, id: payment_promise.id),
+              data: { remote: true }
+
     - if payment_promise.pending_task?
       = form_with scope: :activity, url: invoices_sale_activity_path(payment_promise.invoice, payment_promise), method: :patch  do |f|
         .form-row.align-items-center

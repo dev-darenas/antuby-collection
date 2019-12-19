@@ -1,0 +1,11 @@
+- note = presenter(note)
+.card
+  .card-body
+    .card-title.d-flex
+      p #{note.user_name} Ha dejado una nota.
+      .ml-auto
+        = note.created
+    = note.description
+  .d-flex
+    .ml-auto
+      = link_to 'Editar', edit_note_path(note), data: { remote: true }
