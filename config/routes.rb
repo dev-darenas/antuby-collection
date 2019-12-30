@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   resources :users
   resources :tasks, only: :index
   resources :notes
+  resources :export
 
   devise_for :users, path: 'user', controllers: {
     registrations: 'users/registrations',

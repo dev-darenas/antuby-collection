@@ -8,4 +8,6 @@ class Enterprise < ApplicationRecord
 
   has_many :invoices
   has_many :sales, class_name: 'Invoices::Sale'
+
+  mount_uploader :excel, ExcelUploader
 end
