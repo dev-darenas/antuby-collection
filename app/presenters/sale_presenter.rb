@@ -6,6 +6,7 @@ class SalePresenter < BasePresenter
       third_name: 'Nombre',
       total: 'total',
       balance: 'Saldo',
+      creation: 'Fecha de Creacion',
       expiration: 'Fecha de pago'
     }
   end

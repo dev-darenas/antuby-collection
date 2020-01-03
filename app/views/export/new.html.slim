@@ -1,0 +1,12 @@
+h4 Paso 1 Subir el Archivo
+
+- if !@enterprise.excel.file.nil?
+  p Tienes un archivo pendiente por cargar.
+  = link_to 'Continuar Carga', edit_export_path(@enterprise)
+
+p Carga tu excel para importar los datos.
+
+= form_with scope: :enterprise, url: '/export' do |f|
+  = f.file_field :excel
+
+  = f.submit 'cargar'

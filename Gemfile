@@ -39,6 +39,10 @@ gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem 'google-api-client', '0.9.1'
 gem 'mail', '2.7.1'
 
+# Ruby lib for reading/writing/modifying .xlsx and .xlsm files
+gem 'rubyXL', '3.4.10'
+gem 'carrierwave', '2.0.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

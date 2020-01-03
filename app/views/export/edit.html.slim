@@ -1,0 +1,20 @@
+h3 Paso 2 Seleccionar Columnas
+p Selecione las columnas del archivo de excel.
+
+= form_with scope: :export, url: "/export/#{@enterprise.id}", method: :patch do |f|
+
+  .form-group.row
+    = f.label 'Omitir primera fila', class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.check_box :skip_first_row
+
+  - @required_columns.each do |column_name|
+    .form-group.row
+      = f.label column_name, class: 'col-sm-2 col-form-label'
+      .col-sm-10
+        = f.select 'option_value_ids',
+                   @columns.collect.with_index { |c, i| [c, i] },
+                   { include_blank: 'Ignorar Columna' },
+                   { name: "export[#{column_name}]", class: 'form-control' }
+
+  = f.submit 'Cargar', class: 'btn btn-primary'
