@@ -1,38 +1,18 @@
 module Activities
   class Email < Activity
+    # Cuando debemos enviar el email con log o con taks
+    # o se debe de crear un nuevo tipo
+    # after_create :send_email
 
-    require "google/apis/gmail_v1"
-    require "googleauth"
-    require "googleauth/stores/file_token_store"
-    require "fileutils"
-    require "mail"
+    private
 
-    after_create :send_email
-    APPLICATION_NAME = "Antuby".freeze
-
-    def send_email  
-      service = Google::Apis::GmailV1::GmailService.new
-      service.client_options.application_name = APPLICATION_NAME
-      service.authorization = self.created_by.google_refresh_token
-
-      user_id = "me"
-
-      activity = self
-      mail = Mail.new do
-        from    'darenas@softdreams.co'
-        to      'daniel1144151@gmail.com'
-        subject activity.title
-        body    activity.description
+    def send_email
+      begin
+        Gmail::Email.new(self.id).send
+      rescue Exception => e
+        P " e "
+        errors.add(:base, "Error al enviar el email!")
       end
-
-      message = Google::Apis::GmailV1::Message.new(
-        raw: mail.to_s
-      )
-
-      service.send_user_message(
-        user_id,
-        message
-      )
     end
   end
 end
