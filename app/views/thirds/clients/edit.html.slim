@@ -2,4 +2,5 @@
          links: [[clients_path, 'Clientes'], ["#{@client.name}"]]
 
 = render 'components/navbar_clients' do
+  = render 'components/bills_status_client', client: @client
   = render 'form'

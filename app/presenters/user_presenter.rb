@@ -3,6 +3,7 @@ class UserPresenter < BasePresenter
   def columns
     {
       name: 'Nombre',
+      email: 'Email',
       role: 'Rol'
     }
   end

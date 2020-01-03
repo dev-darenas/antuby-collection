@@ -4,10 +4,20 @@ module Invoices
     before_action :load_invoice, only: %w(edit update)
 
     def index
-      @pagy, @sales = pagy(@enterprise.try(
-                            @name_model
-                          ).includes(:third)
-                      )
+      if current_user.has_role? :admin
+        @pagy, @sales = pagy(@enterprise.try(
+                              @name_model
+                            ).includes(:third)
+                        )
+      else
+        @pagy, @sales = pagy(
+                            @enterprise.try(
+                              @name_model
+                            )
+                            .collector(current_user.id)
+                            .includes(:third)
+                        )
+      end
     end
 
     def new
@@ -70,6 +80,7 @@ module Invoices
           :expiration_date,
           :description,
           :total,
+          :collector_advisor_id,
           third_attributes: [
             :enterprise_id,
             :type,

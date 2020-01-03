@@ -4,9 +4,9 @@
     .card-title
       = link_to sale.code, edit_invoices_sale_path(sale)
     p.card-text
-      | Total: #{sale.total}
+      | Total: #{sale.total_currency}
       br
-      | Saldo: #{sale.balance}
+      | Saldo: #{sale.balance_currency}
       br
       | Fecha creación: #{sale.creation}
       br

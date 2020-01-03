@@ -25,6 +25,9 @@ class User < ApplicationRecord
            class_name: 'Activity'
 
   has_many :notes
+  has_many :invoices,
+           foreign_key: :collector_advisor_id,
+           class_name: :Invoice
 
   delegate :name, :name=, to: :enterprise, prefix: true, allow_nil: true
 
@@ -37,6 +40,6 @@ class User < ApplicationRecord
   end
 
   def added_role
-    add_role(:admin)
+    add_role(:admin) if roles.empty?
   end
 end

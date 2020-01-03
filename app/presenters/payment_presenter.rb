@@ -3,8 +3,12 @@ class PaymentPresenter < BasePresenter
   def columns
     {
       date: 'Fecha de Pago',
-      amount: 'Monto'
+      amount_currency: 'Monto'
     }
+  end
+
+  def amount_currency
+    currency(amount)
   end
 
   def date

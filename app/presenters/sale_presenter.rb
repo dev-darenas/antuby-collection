@@ -4,11 +4,25 @@ class SalePresenter < BasePresenter
     {
       code: 'code',
       third_name: 'Nombre',
-      total: 'total',
-      balance: 'Saldo',
+      total_currency: 'total',
+      balance_currency: 'Saldo',
       creation: 'Fecha de Creacion',
-      expiration: 'Fecha de pago'
+      expiration: 'Fecha de pago',
+      next_payment: 'Fecha de proximo pago',
+      collector_advisor_name: 'Asesor'
     }
+  end
+
+  def balance_currency
+    currency(balance)
+  end
+
+  def total_currency
+    currency(total)
+  end
+
+  def next_payment
+    payment_date.strftime(DATE_FORMAT) if payment_date.present?
   end
 
   def creation
@@ -16,6 +30,14 @@ class SalePresenter < BasePresenter
   end
 
   def expiration
-    expiration_date.strftime(DATE_FORMAT)
+    @view.content_tag(
+            :p,
+            expiration_date.strftime(DATE_FORMAT),
+            class: "text-#{overdue? ? 'danger' : '' }"
+          )
+  end
+
+  def overdue?
+    @model.expiration_date < Date.today.beginning_of_day
   end
 end

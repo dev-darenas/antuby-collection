@@ -15,11 +15,12 @@
     .col-sm-10
       = f.text_field :last_name, class: 'form-control'
 
-  .form-group.row
-    = f.label :current_password, class: 'col-sm-2 col-form-label'
-    .col-sm-10
-      = f.password_field :current_password, class: 'form-control'
-      small Para editar el password, es necesario el password actual
+  - unless @user.new_record?
+    .form-group.row
+      = f.label :current_password, class: 'col-sm-2 col-form-label'
+      .col-sm-10
+        = f.password_field :current_password, class: 'form-control'
+        small Para editar el password, es necesario el password actual
 
   .form-group.row
     = f.label :password, class: 'col-sm-2 col-form-label'
@@ -31,14 +32,15 @@
     .col-sm-10
       = f.password_field :password_confirmation, class: 'form-control'
 
-  .form-group.row
-    = f.label :rols, class: 'col-sm-2 col-form-label'
-    .col-sm-10
-      = f.collection_select 'role_ids',
-                            Role.all,
-                            :id,
-                            :name_es,
-                            { include_blank: false },
-                            { name: 'user[role_ids][]', class: 'form-control' }
+  - if current_user.has_role? :admin
+    .form-group.row
+      = f.label :rols, class: 'col-sm-2 col-form-label'
+      .col-sm-10
+        = f.collection_select 'role_ids',
+                              Role.all,
+                              :id,
+                              :name_es,
+                              { include_blank: false },
+                              { name: 'user[role_ids][]', class: 'form-control' }
 
   = f.submit 'Actualizar', class: 'btn btn-primary'

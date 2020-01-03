@@ -1,5 +1,5 @@
 class BasePresenter < SimpleDelegator
-  DATE_FORMAT = "%d/%m/%Y %H:%M".freeze
+  DATE_FORMAT = "%d/%b/%Y %H:%M".freeze
 
   def initialize(model, view)
     @model, @view = model, view
@@ -20,5 +20,9 @@ class BasePresenter < SimpleDelegator
 
   def new_link(*args)
     @view.new_polymorphic_path(@model)
+  end
+
+  def currency(value)
+    @view.number_to_currency(value, separator: ".", delimiter: ".", precision: 0)
   end
 end

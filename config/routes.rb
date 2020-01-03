@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'dashboard#index'
   resources :dashboard, only: :index
-  resources :enterprise, only: :show
+  resources :enterprise, only: [:show, :edit, :update]
   resources :products do
     scope module: :products do
       resources :variants
