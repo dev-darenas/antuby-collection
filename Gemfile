@@ -34,7 +34,10 @@ gem 'slim', '4.0.1'
 gem 'devise', '4.7.1'
 gem 'rolify', '5.2.0'
 
-gem 'pagy'
+gem 'pagy', '~> 3.7.1'
+gem 'omniauth-google-oauth2', '~> 0.8.0'
+gem 'google-api-client', '0.9.1'
+gem 'mail', '2.7.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
