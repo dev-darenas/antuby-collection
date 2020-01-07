@@ -4,7 +4,11 @@ module Thirds
     before_action :load_third, only: %w(edit update)
 
     def index
-      @pagy, @thirds = pagy(@enterprise.try(@name_model.pluralize))
+      if current_user.has_role? :admin
+        @pagy, @thirds = pagy(@enterprise.try(@name_model.pluralize))
+      else
+        @pagy, @thirds = pagy(current_user.clients)
+      end
     end
 
     def show; end

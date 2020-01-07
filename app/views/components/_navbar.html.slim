@@ -19,6 +19,7 @@
             | Configuración
           div.dropdown-menu aria-labelledby="navbarDropdown"
             = link_to 'Usuarios', users_path, class: 'dropdown-item'
+            = link_to 'Empresa', edit_enterprise_path(@enterprise), class: 'dropdown-item'
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
             | Reportes

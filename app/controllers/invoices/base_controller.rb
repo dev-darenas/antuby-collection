@@ -23,7 +23,9 @@ module Invoices
     def new
       self.instance_variable_set(
         "@#{@name_model.singularize}",
-        @enterprise.try(@name_model).new
+        @enterprise.try(@name_model).new(
+          params[:invoices_sale].present? ? invoices_params : {}
+        )
       )
     end
 

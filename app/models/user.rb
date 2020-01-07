@@ -28,6 +28,9 @@ class User < ApplicationRecord
   has_many :invoices,
            foreign_key: :collector_advisor_id,
            class_name: :Invoice
+  has_many :clients,
+           through: :invoices,
+           source: :third
 
   delegate :name, :name=, to: :enterprise, prefix: true, allow_nil: true
 
