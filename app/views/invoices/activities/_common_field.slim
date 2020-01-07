@@ -37,12 +37,12 @@
 .form-group.row
   = f.label :remember, class: 'col-sm-2 col-form-label'
   .col-sm-10
-    = f.datetime_select :remember
+    = f.datetime_select :remember, minute_step: 15
 
 .form-group.row
   = f.label :due_date, class: 'col-sm-2 col-form-label'
   .col-sm-10
-    = f.datetime_select :due_date
+    = f.datetime_select :due_date, minute_step: 15
 
 .form-group.row
   = f.label :collection_advisor, class: 'col-sm-2 col-form-label'
@@ -53,13 +53,16 @@
                           :name,
                           { include_blank: false },
                           { class: 'form-control' }
-
-.form-group.row
-  = f.label :contact, class: 'col-sm-2 col-form-label'
-  .col-sm-10
-    = f.collection_select :contact_id,
-                          @sale.third.contacts,
-                          :id,
-                          :full_name,
-                          { include_blank: false },
-                          { class: 'form-control' }
+#contact
+  .form-group.row
+    = f.label :contact, class: 'col-sm-2 col-form-label'
+    .col-sm-10.input-group
+      = f.collection_select :contact_id,
+                            @sale.third.contacts,
+                            :id,
+                            :full_name,
+                            { include_blank: false },
+                            { class: 'form-control' }
+                   
+      .input-group-append
+        //= link_to 'Nuevo', new_invoices_sale_activities_contact_path(@sale), class: 'btn btn-outline-primary', remote: true

@@ -19,7 +19,8 @@ class Activity < ApplicationRecord
              class_name: 'User',
              optional: true
 
-  belongs_to :contact
+  belongs_to :contact, optional: true
+  accepts_nested_attributes_for :contact
 
   delegate :name, to: :collection_advisor, prefix: true
   delegate :name, to: :collector, prefix: true

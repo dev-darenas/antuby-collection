@@ -1,9 +1,10 @@
 = render 'components/breadcrumb',
          links: [ [clients_path, 'Clientes'], 
-           [edit_client_path(@client), @client.name], 
+           [edit_client_path(@client), @client.name],
            ['Facturas']]
 
 = render 'components/navbar_clients' do
+  = link_to 'Nueva Factura', new_invoices_sale_path(invoices_sale: { third_id: @client.id }), class: 'btn btn-primary'
   = render 'components/table',
             records: @invoices,
             new_record: new_invoices_sale_path

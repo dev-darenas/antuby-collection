@@ -35,7 +35,7 @@ module Invoices
           redirect_to edit_polymorphic_path([@sale, activity])
         else
           flash.now[:error] = activity.errors.details
-          redirect_to :new
+          redirect_to new_polymorphic_path([@sale, activity])
         end
       end
 
@@ -69,7 +69,14 @@ module Invoices
             :remember,
             :due_date,
             :contact_id,
-            :type_activity
+            :type_activity,
+            contact_attributes: [
+              :full_name,
+              :phone,
+              :cellphone,
+              :email,
+              :third_id
+            ]
           )
       end
 
@@ -99,6 +106,10 @@ module Invoices
 
       def sale_id
         params.require(:sale_id)
+      end
+
+      def activity_model
+        Activity
       end
     end
   end

@@ -1,0 +1,9 @@
+= form_with scope: activity do |f|
+  = f.fields_for :contact do |contact_form|
+    = contact_form.hidden_field :third_id, value: @sale.third_id
+
+    h4 Nuevo Contacto
+    hr
+
+    = render 'thirds/clients/contacts/fields', f: contact_form
+hr

@@ -32,6 +32,7 @@ Rails.application.routes.draw do
         resources :emails
         resources :payment_promises
         resources :todos
+        resources :contacts, only: :new
       end
     end
   end
