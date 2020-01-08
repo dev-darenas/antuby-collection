@@ -1,16 +1,16 @@
 .form-group.row
-  = f.label :status, class: 'col-sm-2 col-form-label'
-  .col-sm-10
-    = f.select :status,
-               Activity.statuses.keys.map{ |status| [status.titleize, status] },
-               {},
-               { class: 'form-control' }
-
-.form-group.row
   = f.label :type_activity, class: 'col-sm-2 col-form-label'
   .col-sm-10
     = f.select :type_activity,
                Activity.type_activities.keys.map{ |ta| [ta.titleize, ta] },
+               {},
+               { class: 'form-control type_activity' }
+
+.form-group.row.activities_fields.task style="display: #{display(object, 'task')};"
+  = f.label :status, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.select :status,
+               Activity.statuses.keys.map{ |status| [status.titleize, status] },
                {},
                { class: 'form-control' }
 
@@ -24,22 +24,22 @@
   .col-sm-10
     = f.text_area :description, class: 'form-control'
 
-.form-group.row
+.form-group.row.activities_fields.log style="display: #{display(object, 'log')};"
   = f.label :date_activity, class: 'col-sm-2 col-form-label'
   .col-sm-10
     = f.date_select :date_activity
 
-.form-group.row
+.form-group.row.activities_fields.task style="display: #{display(object, 'task')};"
   = f.label :remind, class: 'col-sm-2 col-form-label'
   .col-sm-10
     = f.check_box :remind
 
-.form-group.row
+.form-group.row.activities_fields.task style="display: #{display(object, 'task')};"
   = f.label :remember, class: 'col-sm-2 col-form-label'
   .col-sm-10
     = f.datetime_select :remember, minute_step: 15
 
-.form-group.row
+.form-group.row.activities_fields.task style="display: #{display(object, 'task')};"
   = f.label :due_date, class: 'col-sm-2 col-form-label'
   .col-sm-10
     = f.datetime_select :due_date, minute_step: 15
@@ -53,16 +53,3 @@
                           :name,
                           { include_blank: false },
                           { class: 'form-control' }
-#contact
-  .form-group.row
-    = f.label :contact, class: 'col-sm-2 col-form-label'
-    .col-sm-10.input-group
-      = f.collection_select :contact_id,
-                            @sale.third.contacts,
-                            :id,
-                            :full_name,
-                            { include_blank: false },
-                            { class: 'form-control' }
-                   
-      .input-group-append
-        //= link_to 'Nuevo', new_invoices_sale_activities_contact_path(@sale), class: 'btn btn-outline-primary', remote: true

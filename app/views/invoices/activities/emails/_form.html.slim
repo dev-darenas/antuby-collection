@@ -1,5 +1,5 @@
 = form_with model: [@sale, @email] do |f|
 
-  = render '/invoices/activities/common_field', f: f
+  = render '/invoices/activities/common_field', f: f, object: @email
 
   = f.submit 'Guardar', class: 'btn btn-primary'

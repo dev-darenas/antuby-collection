@@ -1,6 +1,10 @@
+import iniActivities from './activities'
+
 const init = () => {
   $(document).on('turbolinks:load', () => {
-    console.log(' init ');
+    if($(".type_activity").length > 0){
+      iniActivities()
+    }
   });
 };
 
