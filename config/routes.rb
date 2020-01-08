@@ -43,6 +43,10 @@ Rails.application.routes.draw do
   resources :notes
   resources :export
 
+  namespace :public do
+    resources :clients, only: :show
+  end
+
   devise_for :users, path: 'user', controllers: {
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'

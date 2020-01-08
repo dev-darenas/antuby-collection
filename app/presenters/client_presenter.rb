@@ -10,6 +10,10 @@ class ClientPresenter < BasePresenter
     }
   end
 
+  def total_invoices
+    currency(@model.invoices.sum(:total))
+  end
+
   def total_receivable
     currency(@model.invoices.sum(:balance))
   end

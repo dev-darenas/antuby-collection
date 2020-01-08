@@ -1,0 +1,33 @@
+- client = presenter(@client)
+
+h1 #{@enterprise.name}
+h3 Cliente #{@client.name}
+
+table.table
+  thead
+    tr
+      th Código
+      th Creación
+      th Expiración
+      th Total
+      th Saldo
+  tbody
+    - @client.invoices.each do |invoice|
+      - invoice = presenter(invoice)
+      tr
+        td #{invoice.code}
+        td #{invoice.creation}
+        td #{invoice.expiration}
+        td #{invoice.total_currency}
+        td #{invoice.balance_currency}
+  tfoot
+    tr
+      tr
+        td
+        td
+        td Total:
+        td #{ client.total_invoices }
+        td #{ client.total_expired }
+
+hr
+ = content_tag('pre', @enterprise.payment_conditions)
