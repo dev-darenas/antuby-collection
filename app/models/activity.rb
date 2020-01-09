@@ -22,7 +22,7 @@ class Activity < ApplicationRecord
   belongs_to :contact, optional: true
   accepts_nested_attributes_for :contact
 
-  delegate :name, to: :collection_advisor, prefix: true
+  delegate :name, :email, to: :collection_advisor, prefix: true
   delegate :name, to: :collector, prefix: true
   delegate :code, to: :invoice, prefix: true
   delegate :third_name, to: :invoice, prefix: true
@@ -35,4 +35,12 @@ class Activity < ApplicationRecord
     .where('due_date <= ?', Date.today.end_of_day)
     .order(due_date: :asc)
   }
+
+  after_create :send_notification, if: :task?
+
+  private
+
+  def send_notification
+    UserNotificationMailer.new_task(self).deliver_later
+  end
 end

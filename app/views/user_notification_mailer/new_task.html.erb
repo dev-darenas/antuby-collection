@@ -1,0 +1,5 @@
+<% @task = presenter(@task) %>
+<br>
+Hola <%= @task.collection_advisor_name %>
+<br>
+La tarea <%= @task.title %> ha sido asignada para ti para el dia <%= @task.date_task %>, para ver la tarea debes ingresar al siguiente <a href="<%= edit_polymorphic_url([@task.invoice, @task]) %>" target="_blank" > link </a>

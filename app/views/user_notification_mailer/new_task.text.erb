@@ -1,0 +1,5 @@
+<%= @task = presenter(@task) %>
+
+Hola <%= @task.collection_advisor_name %>
+
+La tarea "<%= @task.title %>" ha sido asignada para ti para el dia <%= @task.due_date.strftime("%d/%b/%Y %H:%M") %>
