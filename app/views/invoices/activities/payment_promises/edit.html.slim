@@ -5,3 +5,10 @@
           ['Promesa de Pago']]
 
 = render 'form'
+
+hr
+h4 Notas
+= render 'components/notes', model: @payment_promise.class, object: @payment_promise
+= link_to 'Agregar Nota',
+          new_note_path(model: @payment_promise.class, id: @payment_promise.id),
+          data: { remote: true }

@@ -2,4 +2,18 @@
 
   = render '/invoices/activities/common_field', f: f, object: @email
 
+  #contact
+    .form-group.row
+      = f.label :contact, class: 'col-sm-2 col-form-label'
+      .col-sm-10.input-group
+        = f.collection_select :contact_id,
+                              @sale.third.contacts,
+                              :id,
+                              :full_name,
+                              { include_blank: false },
+                              { class: 'form-control' }
+                    
+        .input-group-append
+          //= link_to 'Nuevo', new_invoices_sale_activities_contact_path(@sale), class: 'btn btn-outline-primary', remote: true
+
   = f.submit 'Guardar', class: 'btn btn-primary'

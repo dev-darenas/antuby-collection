@@ -5,3 +5,10 @@
           ['Visita']]
 
 = render 'form'
+
+hr
+h4 Notas
+= render 'components/notes', model: @visit.class, object: @visit
+= link_to 'Agregar Nota',
+          new_note_path(model: @visit.class, id: @visit.id),
+          data: { remote: true }
