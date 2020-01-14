@@ -1,4 +1,9 @@
 .form-group.row
+  = f.label :identification, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.text_field :identification, class: 'form-control'
+
+.form-group.row
   = f.label :name, class: 'col-sm-2 col-form-label'
   .col-sm-10
     = f.text_field :name, class: 'form-control'
