@@ -7,7 +7,7 @@ class SalePresenter < BasePresenter
       total_currency: 'total',
       balance_currency: 'Saldo',
       creation: 'Fecha de Creacion',
-      expiration: 'Fecha de pago',
+      expiration: 'Vencimiento',
       next_payment: 'Fecha de proximo pago',
       collector_advisor_name: 'Asesor'
     }
@@ -31,10 +31,10 @@ class SalePresenter < BasePresenter
 
   def expiration
     @view.content_tag(
-            :p,
-            expiration_date.strftime(DATE_FORMAT),
-            class: "text-#{overdue? ? 'danger' : '' }"
-          )
+      :p,
+      expiration_date.strftime(DATE_FORMAT),
+      class: "text-#{overdue? ? 'danger' : '' }"
+    )
   end
 
   def overdue?
