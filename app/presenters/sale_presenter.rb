@@ -9,6 +9,7 @@ class SalePresenter < BasePresenter
       creation: 'Fecha de Creacion',
       expiration: 'Vencimiento',
       next_payment: 'Fecha de proximo pago',
+      collection_status: 'Estado',
       collector_advisor_name: 'Asesor'
     }
   end

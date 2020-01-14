@@ -26,6 +26,7 @@ class Activity < ApplicationRecord
   delegate :name, to: :collector, prefix: true
   delegate :code, to: :invoice, prefix: true
   delegate :third_name, to: :invoice, prefix: true
+  delegate :third_email, to: :invoice, prefix: true
   delegate :name, to: :created_by, prefix: true, allow_nil: true
   delegate :email, to: :contact, prefix: true, allow_nil: true
 

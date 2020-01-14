@@ -4,12 +4,14 @@ module Invoices
     before_action :load_activity, only: :update
 
     def index
-      @pagy, @activities = pagy(
-                            @sale
-                              .activities
-                              .includes(:notes)
-                              .order(created_at: :desc)
-                           )
+      activities = @sale
+                    .activities
+                    .includes(:notes)
+                    .order(created_at: :desc)
+
+      activities = activities.task.pending if params[:task].present?
+
+      @pagy, @activities = pagy(activities)
     end
 
     def update

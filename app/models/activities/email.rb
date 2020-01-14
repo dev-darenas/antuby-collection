@@ -2,17 +2,14 @@ module Activities
   class Email < Activity
     # Cuando debemos enviar el email con log o con taks
     # o se debe de crear un nuevo tipo
-    # after_create :send_email
+    after_create :send_email, if: :task?
 
     private
 
     def send_email
-      begin
-        Gmail::Email.new(self.id).send
-      rescue Exception => e
-        P " e "
-        errors.add(:base, "Error al enviar el email!")
-      end
+      # Send Email from my email
+      # Gmail::Email.new(self.id).send
+      ActivityMailer.send_email(self).deliver_later if self.send_now?
     end
   end
 end

@@ -5,7 +5,7 @@
 
 = render 'components/navbar_clients' do
   .text-right
-    = link_to 'Tareas Pendientes', client_activities_path(task: :pending), class: 'btn btn-primary'
+    = link_to 'Actividades Pendientes', client_activities_path(task: :pending), class: 'btn btn-primary'
   .tab-content
     br
     - if @activities.exists?

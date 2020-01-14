@@ -70,6 +70,7 @@ module Invoices
             :due_date,
             :contact_id,
             :type_activity,
+            :send_now,
             contact_attributes: [
               :full_name,
               :phone,

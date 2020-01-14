@@ -2,6 +2,12 @@
 
   = render '/invoices/activities/common_field', f: f, object: @email
 
+  - if @email.new_record?
+    .form-group.row.activities_fields.task style="display: #{display(@email, 'task')};"
+      = f.label :send_now, class: 'col-sm-2 col-form-label'
+      .col-sm-10
+        = f.check_box :send_now
+
   #contact
     .form-group.row
       = f.label :contact, class: 'col-sm-2 col-form-label'

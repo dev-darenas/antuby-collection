@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_14_151311) do
+ActiveRecord::Schema.define(version: 2020_01_14_221742) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_01_14_151311) do
     t.string "title"
     t.boolean "remind", default: false
     t.integer "created_by_id"
+    t.boolean "send_now"
     t.index ["contact_id"], name: "index_activities_on_contact_id"
     t.index ["enterprise_id"], name: "index_activities_on_enterprise_id"
     t.index ["invoice_id"], name: "index_activities_on_invoice_id"

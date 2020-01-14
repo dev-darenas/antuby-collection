@@ -1,6 +1,7 @@
 .card
   .card-body
     p.card-text
+      h4 = link_to sale.code, edit_invoices_sale_path(sale.third)
       h3 = link_to sale.third_name, edit_client_path(sale.third)
       br = sale.third_email
       = render 'components/bills_status_client', client: sale.third
