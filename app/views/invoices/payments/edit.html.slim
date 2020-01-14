@@ -9,3 +9,10 @@
     = render @sale
   .col-md-9
     = render 'form'
+    
+    hr
+    h4 Notas
+    = render 'components/notes', model: @payment.class, object: @payment
+    = link_to 'Agregar Nota',
+              new_note_path(model: @payment.class, id: @payment.id),
+              data: { remote: true }

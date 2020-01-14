@@ -1,4 +1,6 @@
 class Payment < ApplicationRecord
+  include Notable
+
   belongs_to :invoice
   validate :balance_amount
   validates :amount, numericality: { greater_than: 0 }
