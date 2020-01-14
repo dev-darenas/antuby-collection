@@ -42,6 +42,14 @@
   .col-sm-10
     = f.number_field :balance, class: 'form-control', disabled: true
 
+.form-group.row
+  = f.label :status, class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.select :collection_status,
+               Invoice.collection_statuses.keys.map{ |status| [status.titleize, status] },
+               {},
+               { class: 'form-control' }
+
 - if current_user.has_role? :admin
   .form-group.row
     = f.label :collector_advisor_id, class: 'col-sm-2 col-form-label'

@@ -84,6 +84,7 @@ module Invoices
           :total,
           :collector_advisor_id,
           :collector_id,
+          :collection_status,
           third_attributes: [
             :identification,
             :enterprise_id,
