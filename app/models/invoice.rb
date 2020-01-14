@@ -16,6 +16,10 @@ class Invoice < ApplicationRecord
              class_name: 'User',
              foreign_key: :collector_advisor_id
 
+  has_one :sale,
+    foreign_key: :invoice_id,
+    class_name: 'Invoices::Sale'
+
   delegate :name, to: :collector_advisor, prefix: true, allow_nil: true
 
   before_save :set_default_fields, if: :new_record?
