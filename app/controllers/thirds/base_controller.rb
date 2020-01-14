@@ -64,6 +64,7 @@ module Thirds
       params
         .require(third_model.name.underscore)
         .permit(
+          :identification,
           :name,
           :email,
           :cellphone,

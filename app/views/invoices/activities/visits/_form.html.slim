@@ -1,5 +1,15 @@
 = form_with model: [@sale, @visit] do |f|
 
   = render '/invoices/activities/common_field', f: f, object: @visit
-  
+
+  .form-group.row
+    = f.label :collector, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.collection_select :collector_id,
+                            @enterprise.users.with_role(:debt_collector),
+                            :id,
+                            :name,
+                            { include_blank: false },
+                            { class: 'form-control' }
+
   = f.submit 'Guardar', class: 'btn btn-primary'
