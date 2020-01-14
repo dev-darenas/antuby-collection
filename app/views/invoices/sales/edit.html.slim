@@ -3,11 +3,6 @@
 
 = render 'form'
 
-br
-= link_to 'Actividades', invoices_sale_activities_path(@sale), class: 'btn btn-primary'
-br
-= link_to 'Pagos', invoices_sale_payments_path(@sale), class: 'btn btn-primary'
-
 hr
 h4 Notas
 = render 'components/notes', model: @sale.class, object: @sale

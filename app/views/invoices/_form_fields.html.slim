@@ -37,10 +37,16 @@
   .col-sm-10
     = f.number_field :total, class: 'form-control'
 
-.form-group.row
-  = f.label :balance, class: 'col-sm-2 col-form-label'
-  .col-sm-10
-    = f.number_field :balance, class: 'form-control', disabled: true
+- if !@sale.new_record?
+  .form-group.row
+    = f.label :balance, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.number_field :balance, class: 'form-control', disabled: true
+
+  .form-group.row
+    = f.label :expiration_date, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.date_select :expiration_date, class: 'form-control', disabled: true
 
 .form-group.row
   = f.label :status, class: 'col-sm-2 col-form-label'

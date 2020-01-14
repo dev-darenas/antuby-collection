@@ -2,6 +2,7 @@ class ClientPresenter < BasePresenter
 
   def columns
     {
+      identification: '#',
       name: 'Nombre',
       email: 'Email',
       cellphone: 'Celular',

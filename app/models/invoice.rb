@@ -14,7 +14,8 @@ class Invoice < ApplicationRecord
   has_many :payments
   belongs_to :collector_advisor,
              class_name: 'User',
-             foreign_key: :collector_advisor_id
+             foreign_key: :collector_advisor_id,
+             optional: true
 
   has_one :sale,
     foreign_key: :invoice_id,
