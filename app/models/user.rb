@@ -6,8 +6,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable
 
-  after_create :added_role
-
   # relations
   belongs_to :enterprise, autosave: true
   accepts_nested_attributes_for :enterprise
@@ -40,9 +38,5 @@ class User < ApplicationRecord
 
   def name
     "#{first_name} #{last_name}"
-  end
-
-  def added_role
-    add_role(:admin) if roles.empty?
   end
 end
