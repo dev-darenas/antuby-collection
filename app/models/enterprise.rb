@@ -5,9 +5,11 @@ class Enterprise < ApplicationRecord
   has_many :option_types
   has_many :clients
   has_many :providers
-
+  has_many :admin_invoices
   has_many :invoices
   has_many :sales, class_name: 'Invoices::Sale'
 
   mount_uploader :excel, ExcelUploader
+
+  enum current_status: %w(active pay_pending is_delete)
 end
