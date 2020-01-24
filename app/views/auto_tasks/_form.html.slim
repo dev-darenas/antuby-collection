@@ -1,0 +1,47 @@
+= form_with model: @auto_task do |f|
+
+  .form-group.row
+    = f.label :name, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.text_field :name, class: 'form-control'
+  
+  .form-group.row
+    = f.label :time, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.select :time,
+                AutoTask.times.keys.map{ |time| [time.titleize, time] },
+                {},
+                { class: 'form-control' }
+
+  .form-group.row
+    = f.label :number_days, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.number_field :number_days, class: 'form-control'
+
+  .form-group.row
+    = f.label :type_task, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.select :type_task,
+                AutoTask.type_tasks.keys.map{ |time| [time.titleize, time] },
+                {},
+                { class: 'form-control' }
+
+  .form-group.row
+    = f.label :type_activity, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.select :type_activity,
+                AutoTask.type_activities.keys.map{ |time| [time.titleize, time] },
+                {},
+                { class: 'form-control' }
+
+  .form-group.row
+    = f.label :title, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.text_field :title, class: 'form-control'
+
+  .form-group.row
+    = f.label :description, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.text_area :description, class: 'form-control'
+
+  = f.submit 'Guardar', class: 'btn btn-primary'

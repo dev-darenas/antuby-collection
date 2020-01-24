@@ -24,6 +24,8 @@
             = link_to 'Usuarios', users_path, class: 'dropdown-item'
             - if can? :view, Enterprise
               = link_to 'Empresa', edit_enterprise_path(@enterprise), class: 'dropdown-item'
+            - if can? :view, AutoTask
+              = link_to 'Tareas Automaticas', auto_tasks_path, class: 'dropdown-item'
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
             | Reportes

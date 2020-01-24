@@ -1,3 +1,2 @@
 class NotePresenter < BasePresenter
-
 end

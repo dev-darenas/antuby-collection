@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_22_210933) do
+ActiveRecord::Schema.define(version: 2020_01_24_160334) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -92,6 +92,20 @@ ActiveRecord::Schema.define(version: 2020_01_22_210933) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "auto_tasks", force: :cascade do |t|
+    t.integer "time"
+    t.integer "number_days"
+    t.integer "type_task"
+    t.string "name"
+    t.string "title"
+    t.text "description"
+    t.integer "type_activity"
+    t.integer "enterprise_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["enterprise_id"], name: "index_auto_tasks_on_enterprise_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -269,6 +283,7 @@ ActiveRecord::Schema.define(version: 2020_01_22_210933) do
   add_foreign_key "activities", "invoices"
   add_foreign_key "activities", "thirds"
   add_foreign_key "admin_invoices", "enterprises"
+  add_foreign_key "auto_tasks", "enterprises"
   add_foreign_key "contacts", "thirds"
   add_foreign_key "invoices", "enterprises"
   add_foreign_key "invoices", "thirds"

@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   resources :tasks, only: :index
   resources :notes
   resources :export
+  resources :auto_tasks
 
   namespace :public do
     resources :clients, only: :show

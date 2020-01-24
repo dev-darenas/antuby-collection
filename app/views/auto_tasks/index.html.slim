@@ -1,0 +1,7 @@
+= render 'components/breadcrumb',
+         links: [['Tareas Automaticas']]
+
+= link_to 'Nuevo', new_auto_task_path, class: 'btn btn-primary'
+
+= render 'components/table',
+         records: @auto_tasks
