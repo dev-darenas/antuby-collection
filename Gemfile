@@ -33,7 +33,8 @@ gem 'slim', '4.0.1'
 # User Login and permissions
 gem 'devise', '4.7.1'
 gem 'rolify', '5.2.0'
-gem 'devise-security'
+gem 'devise-security', '~> 0.14.3'
+gem 'cancancan', '~> 3.0.1'
 
 gem 'pagy', '~> 3.7.1'
 gem 'omniauth-google-oauth2', '~> 0.8.0'

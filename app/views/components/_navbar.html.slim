@@ -8,18 +8,22 @@
 
     .collapse.navbar-collapse id="navbarSupportedContent"
       ul.navbar-nav.mr-auto
-        li.nav-item
-          = link_to 'Clientes', clients_path, class: 'nav-link'
-        li.nav-item
-          = link_to 'Tareas', tasks_path, class: 'nav-link'
-        li.nav-item
-          = link_to 'Ventas', invoices_sales_path, class: 'nav-link'
+        - if can? :view, Client
+          li.nav-item
+            = link_to 'Clientes', clients_path, class: 'nav-link'
+        - if can? :view, Activity
+          li.nav-item
+            = link_to 'Tareas', tasks_path, class: 'nav-link'
+        - if can? :view, Invoice
+          li.nav-item
+            = link_to 'Ventas', invoices_sales_path, class: 'nav-link'
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
             | Configuración
           div.dropdown-menu aria-labelledby="navbarDropdown"
             = link_to 'Usuarios', users_path, class: 'dropdown-item'
-            = link_to 'Empresa', edit_enterprise_path(@enterprise), class: 'dropdown-item'
+            - if can? :view, Enterprise
+              = link_to 'Empresa', edit_enterprise_path(@enterprise), class: 'dropdown-item'
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
             | Reportes
@@ -36,6 +40,7 @@
               = current_user.name
             div.dropdown-menu aria-labelledby="navbarDropdown"
               = link_to 'Perfil', edit_user_path(current_user), class: 'dropdown-item'
-              = link_to 'Cobranza', '#', class: 'dropdown-item'
+              - if can? :view, AdminInvoice
+                = link_to 'Facturación', billing_admin_invoices_path(), class: 'dropdown-item'
               .dropdown-divider
               = link_to 'Salir', destroy_user_session_path, method: :delete, class: 'dropdown-item'

@@ -1,0 +1,20 @@
+h4 Facturas
+hr
+table.table
+  thead
+    tr
+      th Cod.
+      th Estado
+      th Fecha de Facturación
+      th Fecha de Pago
+      th Total
+  tbody
+    - @admin_invoice.each do |invoice|
+      - invoice = presenter(invoice)
+      tr
+        td = invoice.id
+        td = invoice.status
+        td = invoice.created
+        td = invoice.payment
+        td = invoice.total_currency
+hr

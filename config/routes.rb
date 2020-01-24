@@ -49,6 +49,10 @@ Rails.application.routes.draw do
     resources :clients, only: :show
   end
 
+  namespace :billing do
+    resources :admin_invoices, only: %w(show index)
+  end
+
   devise_for :users, path: 'user', controllers: {
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'

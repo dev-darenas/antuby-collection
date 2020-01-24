@@ -1,6 +1,6 @@
 module Billing
-  class BaseController < ActionController::Base
-    layout 'public'
+  class BaseController < EnterpriseController
+    layout 'billing'
 
   end
 end

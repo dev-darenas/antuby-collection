@@ -7,7 +7,7 @@ module Thirds
       if current_user.has_role? :admin
         @pagy, @thirds = pagy(@enterprise.try(@name_model.pluralize))
       else
-        @pagy, @thirds = pagy(current_user.clients)
+        @pagy, @thirds = pagy(current_user.try(@name_model.pluralize))
       end
     end
 

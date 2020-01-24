@@ -39,4 +39,8 @@ class User < ApplicationRecord
   def name
     "#{first_name} #{last_name}"
   end
+
+  def active_for_authentication?      
+    super && (enterprise.active? || self.has_role?(:admin))
+  end
 end
