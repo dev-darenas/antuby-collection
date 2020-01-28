@@ -44,7 +44,8 @@ class AutoTasksController < EnterpriseController
         :type_task,
         :type_activity,
         :title,
-        :description
+        :description,
+        :active
       )
   end
 

@@ -9,6 +9,7 @@ class CreateAutoTasks < ActiveRecord::Migration[6.0]
       t.text :description
       t.integer :type_activity
       t.references :enterprise, null: false, foreign_key: true
+      t.boolean :active, default: true
 
       t.timestamps
     end

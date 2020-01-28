@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 2020_01_24_160334) do
     t.text "description"
     t.integer "type_activity"
     t.integer "enterprise_id", null: false
+    t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["enterprise_id"], name: "index_auto_tasks_on_enterprise_id"
