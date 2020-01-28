@@ -44,4 +44,9 @@
     .col-sm-10
       = f.text_area :description, class: 'form-control'
 
+  .form-group.row
+    = f.label :active, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.check_box :active
+
   = f.submit 'Guardar', class: 'btn btn-primary'
