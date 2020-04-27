@@ -24,6 +24,8 @@ class Invoice < ApplicationRecord
   delegate :name, to: :collector_advisor, prefix: true, allow_nil: true
 
   before_save :set_default_fields, if: :new_record?
+  before_save :check_status, unless: :new_record?
+  before_save :update_payment_date
 
   scope :expired, -> { 
     where('expiration_date <= ?',Date.today.beginning_of_day)
@@ -40,6 +42,14 @@ class Invoice < ApplicationRecord
 
   def set_default_fields
     self.balance      = self.total
+    self.payment_date = self.expiration_date
+  end
+
+  def check_status
+    self.completed! if balance_changed? && !self.completed?
+  end
+
+  def update_payment_date
     self.payment_date = self.expiration_date
   end
 end

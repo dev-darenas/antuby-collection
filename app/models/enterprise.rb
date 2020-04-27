@@ -7,6 +7,7 @@ class Enterprise < ApplicationRecord
   has_many :providers
   has_many :admin_invoices
   has_many :invoices
+  has_many :activities, through: :invoices
   has_many :sales, class_name: 'Invoices::Sale'
   has_many :auto_tasks
 

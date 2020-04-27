@@ -1,0 +1,56 @@
+h3 Reportes de Actividades
+
+= form_with url: reports_activities_path, method: :get, class: 'form-inline', local: true do |f|
+  .form-group.mb-2
+    label Fecha Inicial
+    = f.date_field :start_date, class: "form-control-plaintext", value: @start_date
+
+  .form-group.mb-2
+    label Fecha Final
+    = f.date_field :end_date, class: "form-control-plaintext", value: @end_date
+
+  .form-group.mb-2
+    label Cliente
+    = f.collection_select :third_id,
+                          @enterprise.clients,
+                          :id,
+                          :name,
+                          { include_blank: true },
+                          { class: 'form-control' }
+  
+  .form-group.mb-2
+    label Asesor de Cobranza
+    = f.collection_select :collector_advisor_id,
+                          @enterprise.users.with_role(:collection_advisor),
+                          :id,
+                          :name,
+                          { include_blank: true },
+                          { class: 'form-control' }
+
+  = f.submit 'Buscar', class: 'btn btn-primary mb-2'
+
+br/
+
+table.table
+  thead
+    tr
+      th Fecha
+      th Titulo
+      th Cliente
+      th Factura
+      th Tipo
+      th Clase
+      th Encargado
+  tbody
+    - @activities.each do |activity|
+      - activity = presenter(activity)
+      tr
+        td #{activity.date_activity_format}
+        td = link_to activity.title, edit_polymorphic_path([activity.invoice ,activity]), target: "_blank"
+        td #{activity.invoice_third_name}
+        td = link_to activity.invoice_code, edit_invoices_sale_path(activity.invoice), target: "_blank"
+        td #{activity.type_activity}
+        td #{activity.type_tr}
+        td #{activity.collection_advisor_name}
+
+p Total: #{ @activities.count }

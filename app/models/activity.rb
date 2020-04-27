@@ -36,6 +36,10 @@ class Activity < ApplicationRecord
     .where('due_date <= ?', Date.today.end_of_day)
     .order(due_date: :asc)
   }
+  scope :range_dates, -> (start_date = Date.today.beginning_of_month, end_dat = Date.today.end_of_month) {
+    where(date_activity: start_date..end_dat)
+    .order(due_date: :asc)
+  }
 
   after_create :send_notification, if: :task?
 

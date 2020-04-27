@@ -39,6 +39,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :reports do
+    resources :activities, only: :index
+  end
+
   resources :option_types
   resources :users
   resources :tasks, only: :index
