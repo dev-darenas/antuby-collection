@@ -27,6 +27,10 @@ class Invoice < ApplicationRecord
   before_save :check_status, unless: :new_record?
   before_save :update_payment_date
 
+  scope :active, -> {
+    where('collection_status IS NOT ?', :completed)
+  }
+
   scope :expired, -> { 
     where('expiration_date <= ?',Date.today.beginning_of_day)
   }

@@ -1,0 +1,15 @@
+h3 Reportes de deudas
+
+.row
+  .col-md-4
+    h4 Total a Cobrar: #{currency(@total_receivable)}
+  .col-md-4  
+    h5.text-danger Vencido: #{currency(@total_expired)}
+  .col-md-4
+    h5.text-primary No vencido: #{currency(@total_not_expired)}
+
+hr/
+
+= column_chart @data, download: { filename: "deudas-totales-#{Date.today.strftime('%d-%b-%y-%h-%m')}" }
+
+br/
