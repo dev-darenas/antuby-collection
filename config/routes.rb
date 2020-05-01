@@ -42,6 +42,8 @@ Rails.application.routes.draw do
   namespace :reports do
     resources :activities, only: :index
     resources :debts, only: :index
+    resources :debts_table, only: :index
+    resources :payments, only: :index
   end
 
   resources :option_types

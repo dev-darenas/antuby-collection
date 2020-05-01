@@ -1,0 +1,51 @@
+h3 Reportes de deudas
+
+= form_with url: reports_debts_table_index_path, method: :get, class: 'form-inline', local: true do |f|
+
+  .form-group.mb-2
+    label Fecha Inicial
+    = f.date_field :start_date, class: "form-control-plaintext", value: @start_date
+
+  .form-group.mb-2
+    label Fecha Final
+    = f.date_field :end_date, class: "form-control-plaintext", value: @end_date
+
+  .form-group.mb-2
+    label Asesor de Cobranza
+    = f.collection_select :collector_advisor_id,
+                          @enterprise.users.with_role(:collection_advisor),
+                          :id,
+                          :name,
+                          { include_blank: true },
+                          { class: 'form-control' }
+
+  = f.submit 'Buscar', class: 'btn btn-primary mb-2'
+  = link_to "Exportar", "#", class: 'btn btn-success' 
+
+br/
+
+.row
+  .col-md-4
+    h4 Total a Cobrar: #{ currency(@invoices.sum(:balance)) }
+
+table.table
+  thead
+    tr
+      th Código
+      th Cliente
+      th Fecha de Pago
+      th Total
+      th Saldo
+      th Asesor
+      th Tareas Pendientes
+  tbody
+    - @invoices.each do |invoices|
+      - invoices = presenter(invoices)
+      tr
+        td = link_to invoices.code, edit_invoices_sale_path(invoices), target: "_blank"
+        td = link_to invoices.third_name, edit_client_path(invoices.third), target: "_blank"
+        td #{invoices.next_payment}
+        td #{invoices.total_currency}
+        td #{invoices.balance_currency}
+        td #{invoices.collector_advisor_name}
+        td #{invoices.activities.tasks.count}
