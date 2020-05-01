@@ -50,10 +50,11 @@ class Invoice < ApplicationRecord
   end
 
   def check_status
-    self.completed! if balance_changed? && !self.completed?
+    # TODO: check if this function is working well!
+    ## self.completed! if balance_changed? && !self.completed? && balance == 0
   end
 
   def update_payment_date
-    self.payment_date = self.expiration_date
+    self.payment_date = self.expiration_date if expiration_date_changed?
   end
 end

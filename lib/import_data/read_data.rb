@@ -4,6 +4,7 @@ module ImportData
 
     attr_accessor :enterprise, :worksheet
     REQUIREDCOLUMNS = [
+      "Identificación",
       "Cliente",
       "Email",
       "Celular",
@@ -32,10 +33,13 @@ module ImportData
       @worksheet.each_with_index do |rows, index|
         next if keys["skip_first_row"].to_i == 1 && index == 0
         row = read_row(index)
-        client = @enterprise.clients.find_or_create_by(name: row[keys["Cliente"].to_i])
+        next if row[keys["Identificacion"].to_i].nil?
+
+        client = @enterprise.clients.find_or_create_by(identification: row[keys["Identificacion"].to_i])
 
         ## Update Client Attributes ##
         client.update(
+          name: row[keys["Cliente"].to_i],
           email: row[keys["Email"].to_i],
           cellphone: row[keys["Celular"].to_i],
           phone: row[keys["Telefono"].to_i],
