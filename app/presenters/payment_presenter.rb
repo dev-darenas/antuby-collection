@@ -18,4 +18,12 @@ class PaymentPresenter < BasePresenter
   def edit_link(*args)
     @view.edit_polymorphic_path([@model.invoice, @model])
   end
+
+  def invoice_total_currency
+    currency(invoice_total)
+  end
+
+  def invoice_balance_currency
+    currency(invoice_balance)
+  end
 end

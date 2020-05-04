@@ -5,6 +5,8 @@ class Payment < ApplicationRecord
   validate :balance_amount
   validates :amount, numericality: { greater_than: 0 }
 
+  delegate :code, :third_name, :total, :balance, :collector_advisor_name, to: :invoice, prefix: true
+
   after_save :set_balance
   before_save :rollback_amount
 

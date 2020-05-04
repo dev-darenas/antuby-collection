@@ -1,0 +1,51 @@
+h3 Pagos
+
+= form_with url: reports_debts_table_index_path, method: :get, class: 'form-inline', local: true do |f|
+
+  .form-group.mb-2
+    label Fecha Inicial
+    = f.date_field :start_date, class: "form-control-plaintext", value: @start_date
+
+  .form-group.mb-2
+    label Fecha Final
+    = f.date_field :end_date, class: "form-control-plaintext", value: @end_date
+
+  .form-group.mb-2
+    label Asesor de Cobranza
+    = f.collection_select :collector_advisor_id,
+                          @enterprise.users.with_role(:collection_advisor),
+                          :id,
+                          :name,
+                          { include_blank: true },
+                          { class: 'form-control' }
+
+  = f.submit 'Buscar', class: 'btn btn-primary mb-2'
+  = link_to "Exportar", "#", class: 'btn btn-success' 
+
+= line_chart @data
+
+.row
+  .col-md-4
+    h4 Total a Cobrado: #{ currency(@payments.sum(:amount)) }
+
+table.table
+  thead
+    tr
+      th Código Factura
+      th Cliente
+      th Fecha de Pago
+      th Total Factura
+      th Saldo Faltura
+      th Total Pagado
+      th Asesor
+  tbody
+    - @payments.each do |payment|
+      - payment = presenter(payment)
+      tr
+        td = link_to payment.invoice_code, edit_invoices_sale_path(payment.invoice), target: "_blank"
+        td = link_to payment.invoice_third_name, edit_client_path(payment.invoice.third), target: "_blank"
+        td #{payment.date}
+        td #{payment.invoice_total_currency}
+        td #{payment.invoice_balance_currency}
+        td #{payment.amount_currency}
+        td #{payment.invoice_collector_advisor_name}

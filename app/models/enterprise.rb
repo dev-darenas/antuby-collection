@@ -10,6 +10,7 @@ class Enterprise < ApplicationRecord
   has_many :activities, through: :invoices
   has_many :sales, class_name: 'Invoices::Sale'
   has_many :auto_tasks
+  has_many :payments, through: :invoices
 
   mount_uploader :excel, ExcelUploader
 
