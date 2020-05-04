@@ -1,0 +1,8 @@
+es:
+  third:
+    identification: "Identificación"
+    name: "Nombre"
+    cellphone: "Celular"
+    phone: "Celular"
+    address: "Dirección"
+    email: "Email"

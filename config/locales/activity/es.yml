@@ -1,0 +1,6 @@
+es:
+  activity:
+    status:
+      pending: "Pendiente"
+      cancel: "Cancelado"
+      succes: "Hecho"
