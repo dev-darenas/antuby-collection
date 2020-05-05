@@ -18,7 +18,7 @@
       .col-md-4
         - if call.task?
           p Fecha Vencimiento: #{call.date_task}
-          p Estado: #{ t("activity.status.pending") }
+          p Estado: #{ t("activity.status.#{call.status}") }
       .col-md-4
         p 
           | Factura: 

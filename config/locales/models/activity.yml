@@ -4,3 +4,6 @@ es:
       pending: "Pendiente"
       cancel: "Cancelado"
       succes: "Hecho"
+    type_activity:
+      task: "Tarea"
+      log: "Registro"

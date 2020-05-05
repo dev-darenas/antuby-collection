@@ -2,7 +2,7 @@
   = f.label :type_activity, class: 'col-sm-2 col-form-label'
   .col-sm-10
     = f.select :type_activity,
-               Activity.type_activities.keys.map{ |ta| [ta.titleize, ta] },
+               Activity.type_activities.keys.map{ |ta| [t("activity.type_activity.#{ta}"), ta] },
                {},
                { class: 'form-control type_activity' }
 
@@ -10,7 +10,7 @@
   = f.label :status, class: 'col-sm-2 col-form-label'
   .col-sm-10
     = f.select :status,
-               Activity.statuses.keys.map{ |status| [status.titleize, status] },
+               Activity.statuses.keys.map{ |status| [ t("activity.status.#{status}"), status] },
                {},
                { class: 'form-control' }
 
