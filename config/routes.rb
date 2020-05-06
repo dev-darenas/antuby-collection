@@ -1,6 +1,12 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  authenticate :user, lambda { |u| p " Usuario! "; p u; true } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   root 'dashboard#index'
   resources :dashboard, only: :index
   resources :enterprise, only: [:show, :edit, :update]
