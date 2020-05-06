@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2020_01_24_160334) do
   end
 
   create_table "auto_tasks", force: :cascade do |t|
-    t.integer "time"
+    t.string "time"
     t.integer "number_days"
     t.integer "type_task"
     t.string "name"

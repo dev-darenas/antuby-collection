@@ -1,7 +1,7 @@
 class CreateAutoTasks < ActiveRecord::Migration[6.0]
   def change
     create_table :auto_tasks do |t|
-      t.integer :time
+      t.string :time
       t.integer :number_days
       t.integer :type_task
       t.string  :name

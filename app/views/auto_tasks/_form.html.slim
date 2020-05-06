@@ -9,7 +9,7 @@
     = f.label :time, class: 'col-sm-2 col-form-label'
     .col-sm-10
       = f.select :time,
-                AutoTask.times.keys.map{ |time| [time.titleize, time] },
+                AutoTask.times.map {|key, _value| [key, key]},
                 {},
                 { class: 'form-control' }
 

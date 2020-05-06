@@ -36,6 +36,8 @@ module Invoices
       )
 
       invoice = self.instance_variable_get("@#{@name_model.singularize}")
+      invoice.collector_advisor = current_user if invoice.collector_advisor.nil?
+
       if invoice.save
         flash[:success] = 'Factura Creada'
         # TODO: :invoices_sale should be dinamic
