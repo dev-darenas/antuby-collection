@@ -4,7 +4,7 @@ class ActivityPresenter < BasePresenter
             :p,
             due_date.strftime(DATE_FORMAT),
             class: "text-#{overdue? ? 'danger' : 'warning' }"
-          )
+          ) if @model.due_date
   end
 
   def pending_task?
@@ -16,7 +16,7 @@ class ActivityPresenter < BasePresenter
   end
 
   def overdue?
-    pending_task? && @model.due_date < Date.today.beginning_of_day
+    pending_task? && @model.due_date && @model.due_date < Date.today.beginning_of_day
   end
 
   def date_activity_format
