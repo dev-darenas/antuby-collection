@@ -23,6 +23,18 @@ class Payment < ApplicationRecord
       balance: self.invoice.balance - self.amount,
       payment_date: self.next_payment
     )
+
+    self.invoice.payment_promises.create(
+      third_id: self.invoice.third_id,
+      enterprise_id: self.invoice.enterprise_id,
+      collection_advisor_id: self.invoice.collector_advisor_id, # TODO: maybe this should the how reported the payment
+      status: :pending,
+      type_activity: :task,
+      date_activity: self.next_payment,
+      due_date: self.next_payment,
+      title: 'Promesa de Pago (Auto generada)',
+      remind: true
+    )
   end
 
   def rollback_amount

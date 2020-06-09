@@ -1,7 +1,7 @@
 class Invoice < ApplicationRecord
   include Notable
 
-  enum collection_status: %w(pending paymen_promise dispute bad completed)
+  enum collection_status: %w(pending paymen_promise dispute bad completed canceled)
   belongs_to :enterprise
   belongs_to :third
   accepts_nested_attributes_for :third
