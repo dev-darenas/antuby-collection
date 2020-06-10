@@ -15,4 +15,12 @@ class UserNotificationMailer < ApplicationMailer
       subject: "Nueva nota agregada en la tarea #{@note.notable_title}"
     )
   end
+
+  def new_register(user)
+    @user=user.enterprise
+    mail(
+        to: user.email,
+        subject: "Welcome to antuby cobranza"
+    )
+  end
 end

@@ -32,6 +32,7 @@ class User < ApplicationRecord
 
   delegate :name, :name=, to: :enterprise, prefix: true, allow_nil: true
   after_create :assign_default_role
+  after_create :send_notification
 
   def enterprise
     super || build_enterprise
@@ -52,5 +53,9 @@ class User < ApplicationRecord
   private
   def assign_default_role
     self.add_role(:admin) if self.roles.blank?
+  end
+
+  def send_notification
+    UserNotificationMailer.new_register(self).deliver_later
   end
 end
