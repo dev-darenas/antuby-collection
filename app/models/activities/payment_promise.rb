@@ -6,7 +6,7 @@ module Activities
 
     def update_invoice
       self.invoice.update(
-        collection_status: :paymen_promise,
+        collection_status: self.invoice.balance == 0 ? :completed : :paymen_promise,
         payment_date: self.due_date
       )
     end
