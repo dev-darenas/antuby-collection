@@ -17,7 +17,7 @@ class Enterprise < ApplicationRecord
   enum current_status: %w(active pay_pending is_delete)
   before_save :send_notification_access_granted
 
-
+  private
   def send_notification_access_granted
     if registration_activated_changed? && registration_activated
       self.users.each do |u|
