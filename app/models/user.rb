@@ -11,8 +11,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :enterprise
 
   # TODO
-   # User with Collection Advisor role relation wit activities
-   # User with debt collector role relation wit activities
+  # User with Collection Advisor role relation wit activities
+  # User with debt collector role relation wit activities
   has_many :activities,
            -> { where type_activity: :task },
            foreign_key: :collection_advisor_id,
@@ -41,8 +41,12 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def active_for_authentication?      
-    super && (enterprise.active? || self.has_role?(:admin))
+  def active_for_authentication?
+    super && ((enterprise.active? && enterprise.registration_activated?) || self.has_role?(:admin))
+  end
+
+  def inactive_message
+    enterprise.registration_activated? ? super : "User account has been disabled"
   end
 
   private
