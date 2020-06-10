@@ -33,7 +33,6 @@ class User < ApplicationRecord
   delegate :name, :name=, to: :enterprise, prefix: true, allow_nil: true
   after_create :assign_default_role
   after_create :send_notification
-  after_update :send_notification_access_granted
 
   def enterprise
     super || build_enterprise
@@ -61,9 +60,5 @@ class User < ApplicationRecord
     Admin.all.each do |admin|
       AdminNotificationMailer.new_register(self,admin).deliver_now
     end
-  end
-
-  def send_notification_access_granted
-    UserNotificationMailer.access_granted(self).deliver_now
   end
 end
