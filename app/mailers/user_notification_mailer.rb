@@ -23,4 +23,12 @@ class UserNotificationMailer < ApplicationMailer
         subject: "Welcome to antuby cobranza"
     )
   end
+
+  def access_granted(user)
+    @user=user.enterprise
+    mail(
+        to: user.email,
+        subject: "your account has been verified"
+    )
+  end
 end
