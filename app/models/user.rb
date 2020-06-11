@@ -31,6 +31,7 @@ class User < ApplicationRecord
            source: :third
 
   delegate :name, :name=, to: :enterprise, prefix: true, allow_nil: true
+  after_create :assign_default_role
 
   def enterprise
     super || build_enterprise
@@ -42,5 +43,10 @@ class User < ApplicationRecord
 
   def active_for_authentication?      
     super && (enterprise.active? || self.has_role?(:admin))
+  end
+
+  private
+  def assign_default_role
+    self.add_role(:admin) if self.roles.blank?
   end
 end
