@@ -43,7 +43,9 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && ((enterprise.active? && enterprise.registration_activated?) || self.has_role?(:admin))
+    super && ((enterprise.active? && enterprise.registration_activated?) ||
+              (enterprise.registration_activated? && self.has_role?(:admin))
+             )
   end
 
   def inactive_message
@@ -54,11 +56,11 @@ class User < ApplicationRecord
   def assign_default_role
     self.add_role(:admin) if self.roles.blank?
   end
-
+  
   def send_notification
     UserNotificationMailer.new_register(self).deliver_now
     Admin.all.each do |admin|
-      AdminNotificationMailer.new_register(self,admin).deliver_now
+      AdminNotificationMailer.new_register(self, admin).deliver_now
     end
   end
 end
