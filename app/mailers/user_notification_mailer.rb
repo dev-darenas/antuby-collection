@@ -17,7 +17,7 @@ class UserNotificationMailer < ApplicationMailer
   end
 
   def new_register(user)
-    @user=user.enterprise
+    @enterprise = user.enterprise
     mail(
         to: user.email,
         subject: "Welcome to antuby cobranza"
@@ -25,7 +25,7 @@ class UserNotificationMailer < ApplicationMailer
   end
 
   def access_granted(user)
-    @user=user.enterprise
+    @enterprise = user.enterprise
     mail(
         to: user.email,
         subject: "your account has been verified"

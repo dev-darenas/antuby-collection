@@ -1,7 +1,7 @@
 class AdminNotificationMailer < ApplicationMailer
 
   def new_register(user, admin)
-    @user = user.enterprise
+    @enterprise = user.enterprise
     @admin=admin
     mail(
         to: admin.email,
