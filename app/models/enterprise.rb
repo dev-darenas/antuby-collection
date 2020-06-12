@@ -13,6 +13,7 @@ class Enterprise < ApplicationRecord
   has_many :payments, through: :invoices
 
   mount_uploader :excel, ExcelUploader
+  mount_uploader  :logo,  LogoUploader
 
   enum current_status: %w(active pay_pending is_delete)
 end

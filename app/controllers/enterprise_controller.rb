@@ -19,7 +19,9 @@ class EnterpriseController < ApplicationController
     params.require(:enterprise)
       .permit(
         :name,
-        :payment_conditions
+        :payment_conditions,
+        :logo,
+        :logo_cache
       )
   end
 
