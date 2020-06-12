@@ -22,7 +22,7 @@ class Enterprise < ApplicationRecord
     if registration_activated_changed? && registration_activated
       self.users.each do |u|
         #if u.has_role?(:admin)
-        UserNotificationMailer.access_granted(u).deliver_now
+        UserNotificationMailer.access_granted(u).deliver_later
         #end
       end
     end

@@ -58,9 +58,9 @@ class User < ApplicationRecord
   end
   
   def send_notification
-    UserNotificationMailer.new_register(self).deliver_now
+    UserNotificationMailer.new_register(self).deliver_later
     Admin.all.each do |admin|
-      AdminNotificationMailer.new_register(self, admin).deliver_now
+      AdminNotificationMailer.new_register(self, admin).deliver_later
     end
   end
 end
