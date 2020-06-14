@@ -16,4 +16,16 @@ class Enterprise < ApplicationRecord
   mount_uploader  :logo,  LogoUploader
 
   enum current_status: %w(active pay_pending is_delete)
+  before_save :send_notification_access_granted
+
+  private
+  def send_notification_access_granted
+    if registration_activated_changed? && registration_activated
+      self.users.each do |u|
+        #if u.has_role?(:admin)
+        UserNotificationMailer.access_granted(u).deliver_later
+        #end
+      end
+    end
+  end
 end

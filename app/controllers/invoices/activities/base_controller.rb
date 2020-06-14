@@ -15,7 +15,7 @@ module Invoices
       def new
         self.instance_variable_set(
           "@#{@name_model.singularize}",
-          @sale.try(@name_model.pluralize).new
+          @sale.try(@name_model.pluralize).new(collection_advisor_id: current_user.id)
         )
       end
 
