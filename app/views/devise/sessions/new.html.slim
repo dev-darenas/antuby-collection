@@ -20,4 +20,5 @@ br
 
       .d-flex.justify-content-between
         = f.submit "Entrar", class: 'btn btn-primary'
+        = link_to "Registrarse", new_user_registration_path, class: 'btn btn-primary'
         = link_to "Olvidaste tu contraseña?", new_password_path(resource_name)
