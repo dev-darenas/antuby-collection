@@ -2,9 +2,9 @@
   .navbar.navbar-expand-lg.navbar-light.bg-light
     a.navbar-brand href="/"
       - if @enterprise.logo?
-        = (image_tag(@enterprise.logo.small_thumb.url, alt: 'Logo'))
+        = image_tag(@enterprise.logo.small_thumb.url, alt: 'Logo')
       - else
-        | Antuby
+        = image_tag('logo_index.png', alt: 'Logo', width:"100")
 
     button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
       span.navbar-toggler-icon

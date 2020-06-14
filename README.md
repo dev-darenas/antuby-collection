@@ -11,3 +11,11 @@ To write your crontab file for your jobs, execute this command:
 ```
   whenever --update-crontab
 ```
+
+## Background job
+
+To works with background job, in a new console run `sidekiq` and now you can run commands in the console
+
+```
+  AutomateActivities.perform_async() -> To create Autotasks
+```
