@@ -12,4 +12,11 @@
     .col-sm-10
       = f.text_area :payment_conditions, class: 'form-control'
 
+  .form-group.row
+    = f.label :logo, class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.file_field :logo, class: 'form-control'
+      = f.hidden_field :logo_cache
+      = (image_tag(@enterprise.logo.small_thumb.url, alt: 'Logo')) if @enterprise.logo?
+
   = f.submit 'Actualizar', class: 'btn btn-primary'

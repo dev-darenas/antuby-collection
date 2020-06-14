@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_08_191754) do
+ActiveRecord::Schema.define(version: 2020_06_12_190241) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 2020_06_08_191754) do
     t.text "payment_conditions"
     t.integer "current_status", default: 0
     t.boolean "registration_activated", default: false
+    t.string "logo"
   end
 
   create_table "invoices", force: :cascade do |t|

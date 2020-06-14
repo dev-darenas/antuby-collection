@@ -45,6 +45,7 @@ gem 'mail', '2.7.1'
 # Ruby lib for reading/writing/modifying .xlsx and .xlsm files
 gem 'rubyXL', '3.4.10'
 gem 'carrierwave', '2.0.2'
+gem 'mini_magick'
 
 gem 'rails_admin', '~> 2.0'
 gem "chartkick", '3.3.1'
