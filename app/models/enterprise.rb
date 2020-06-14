@@ -18,12 +18,11 @@ class Enterprise < ApplicationRecord
   before_save :send_notification_access_granted
 
   private
+
   def send_notification_access_granted
     if registration_activated_changed? && registration_activated
       self.users.each do |u|
-        #if u.has_role?(:admin)
-        UserNotificationMailer.access_granted(u).deliver_later
-        #end
+        UserNotificationMailer.access_granted(u).deliver_later if u.has_role?(:admin)
       end
     end
   end

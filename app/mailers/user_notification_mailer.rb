@@ -20,7 +20,7 @@ class UserNotificationMailer < ApplicationMailer
     @enterprise = user.enterprise
     mail(
         to: user.email,
-        subject: "Welcome to antuby cobranza"
+        subject: "Bienvenidos a antuby cobranza"
     )
   end
 
@@ -28,7 +28,7 @@ class UserNotificationMailer < ApplicationMailer
     @enterprise = user.enterprise
     mail(
         to: user.email,
-        subject: "your account has been verified"
+        subject: "Tu cuenta ha sido verificada"
     )
   end
 end

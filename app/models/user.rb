@@ -43,9 +43,7 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && ((enterprise.active? && enterprise.registration_activated?) ||
-              (enterprise.registration_activated? && self.has_role?(:admin))
-             )
+    super && enterprise.registration_activated? && (enterprise.active? || self.has_role?(:admin)) 
   end
 
   def inactive_message
@@ -53,6 +51,7 @@ class User < ApplicationRecord
   end
 
   private
+
   def assign_default_role
     self.add_role(:admin) if self.roles.blank?
   end
