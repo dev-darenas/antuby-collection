@@ -9,6 +9,8 @@
       p Total: #{sale.total_currency}
       p Saldo: #{sale.balance_currency}
       p Vencimiento: #{sale.expiration_date}
+      p Fecha de Pago: #{sale.payment_date}
+      br
       - if sale.payments.exists?
         p Fecha Ultimos Pago: #{sale.payments.last.payment_date}
         p Valor Ultimos Pago: #{sale.payments.last.amount}
