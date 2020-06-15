@@ -50,6 +50,8 @@ class User < ApplicationRecord
     if enterprise.registration_activated?
       if !enterprise.active?
         "Empresa Desactivada"
+      else
+        super
       end
     else
       "Falta Verificar tu cuenta"
