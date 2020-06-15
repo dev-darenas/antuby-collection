@@ -3,11 +3,12 @@ class Payment < ApplicationRecord
 
   belongs_to :invoice
   validate :balance_amount
-  validates :amount, numericality: { greater_than: 0 }
+  validates :amount, numericality: {greater_than: 0}
 
   delegate :code, :third_name, :total, :balance, :collector_advisor_name, to: :invoice, prefix: true
 
   after_save :set_balance
+  after_create :new_payment_promises
   before_save :rollback_amount
 
   private
@@ -18,22 +19,24 @@ class Payment < ApplicationRecord
     end
   end
 
+  def new_payment_promises
+    self.invoice.payment_promises.create(
+        third_id: self.invoice.third_id,
+        enterprise_id: self.invoice.enterprise_id,
+        collection_advisor_id: self.invoice.collector_advisor_id, # TODO: maybe this should the how reported the payment
+        status: :pending,
+        type_activity: :task,
+        date_activity: self.next_payment,
+        due_date: self.next_payment,
+        title: 'Promesa de Pago (Auto generada)',
+        remind: true
+    )
+  end
+
   def set_balance
     self.invoice.update(
-      balance: self.invoice.balance - self.amount,
-      payment_date: self.next_payment
-    )
-
-    self.invoice.payment_promises.create(
-      third_id: self.invoice.third_id,
-      enterprise_id: self.invoice.enterprise_id,
-      collection_advisor_id: self.invoice.collector_advisor_id, # TODO: maybe this should the how reported the payment
-      status: :pending,
-      type_activity: :task,
-      date_activity: self.next_payment,
-      due_date: self.next_payment,
-      title: 'Promesa de Pago (Auto generada)',
-      remind: true
+        balance: self.invoice.balance - self.amount,
+        payment_date: self.next_payment
     )
   end
 
