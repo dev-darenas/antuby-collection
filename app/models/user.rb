@@ -43,7 +43,6 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    p "#{enterprise.registration_activated?} && #{enterprise.active?} || #{self.has_role?(:admin)}"
     super && enterprise.registration_activated? && (enterprise.active? || self.has_role?(:admin))
   end
 
