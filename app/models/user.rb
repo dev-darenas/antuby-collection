@@ -43,11 +43,19 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && enterprise.registration_activated? && (enterprise.active? || self.has_role?(:admin)) 
+    super && enterprise.registration_activated? && (enterprise.active? || self.has_role?(:admin))
   end
 
   def inactive_message
-    enterprise.registration_activated? ? super : "User account has been disabled"
+    if enterprise.registration_activated?
+      if !enterprise.active?
+        "Empresa Desactivada"
+      else
+        super
+      end
+    else
+      "Falta Verificar tu cuenta"
+    end
   end
 
   private
@@ -55,7 +63,7 @@ class User < ApplicationRecord
   def assign_default_role
     self.add_role(:admin) if self.roles.blank?
   end
-  
+
   def send_notification
     UserNotificationMailer.new_register(self).deliver_later
     Admin.all.each do |admin|
