@@ -4,10 +4,12 @@ module Invoices
     before_action :load_invoice, only: %w(edit update)
 
     def index
+      # TODO: Add filter to show all invoices
       if current_user.has_role? :admin
         @pagy, @sales = pagy(@enterprise.try(
                               @name_model
                             ).includes(:third)
+                            .active
                         )
       else
         @pagy, @sales = pagy(
@@ -16,6 +18,7 @@ module Invoices
                             )
                             .collector(current_user.id)
                             .includes(:third)
+                            .active
                         )
       end
     end
