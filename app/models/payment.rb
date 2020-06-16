@@ -8,7 +8,7 @@ class Payment < ApplicationRecord
   delegate :code, :third_name, :total, :balance, :collector_advisor_name, to: :invoice, prefix: true
 
   after_save :set_balance
-  after_find :set_balance
+  after_create :set_balance
   after_create :new_payment_promises
   before_save :rollback_amount
 
