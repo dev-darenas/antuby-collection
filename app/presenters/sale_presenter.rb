@@ -22,8 +22,16 @@ class SalePresenter < BasePresenter
     currency(total)
   end
 
+  def last_currency
+    currency(payments.last.amount)
+  end
+
   def next_payment
     payment_date.strftime(DATE_FORMAT) if payment_date.present?
+  end
+
+  def last_payment
+    payments.last.payment_date.strftime(DATE_FORMAT) if payment_date.present?
   end
 
   def creation
