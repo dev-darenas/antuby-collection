@@ -11,6 +11,8 @@ class Note < ApplicationRecord
 
   def send_notification
     ## solo enviar notas a las actividades
-    UserNotificationMailer.new_note(self).deliver_later
+    unless self.notable.collection_advisor.id == self.user_id
+      UserNotificationMailer.new_note(self).deliver_later
+    end
   end
 end
