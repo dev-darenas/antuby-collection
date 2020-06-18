@@ -1,4 +1,4 @@
-= form_with scope: activity do |f|
+= form_with scope: @activity do |f|
   = f.fields_for :contact do |contact_form|
     = contact_form.hidden_field :third_id, value: @sale.third_id
 
@@ -6,4 +6,6 @@
     hr
 
     = render 'thirds/clients/contacts/fields', f: contact_form
+    = link_to 'Cancelar', new_invoices_sale_activities_email_path
+
 hr
