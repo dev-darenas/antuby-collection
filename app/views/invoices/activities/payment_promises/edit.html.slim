@@ -7,6 +7,8 @@
 = render 'form'
 
 hr
+= link_to 'Ir a la pantalla de pago', invoices_sale_payments_path(@sale), target: "_blank"
+hr
 h4 Notas
 = render 'components/notes', model: @payment_promise.class, object: @payment_promise
 = link_to 'Agregar Nota',
