@@ -26,6 +26,7 @@ class Invoice < ApplicationRecord
   before_save :set_default_fields, if: :new_record?
   before_save :check_status, unless: :new_record?
   before_save :update_payment_date
+  after_find :check_status
 
   scope :active, -> {
     where.not(collection_status: :completed)
@@ -51,7 +52,7 @@ class Invoice < ApplicationRecord
 
   def check_status
     # TODO: check if this function is working well!
-    ## self.completed! if balance_changed? && !self.completed? && balance == 0
+    self.completed! if balance_changed? && !self.completed? && balance == 0
   end
 
   def update_payment_date
