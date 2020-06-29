@@ -8,6 +8,7 @@ class Payment < ApplicationRecord
   delegate :code, :third_name, :total, :balance, :collector_advisor_name, to: :invoice, prefix: true
 
   after_save :set_balance
+  after_create :set_balance
   after_create :new_payment_promises
   before_save :rollback_amount
 
@@ -35,7 +36,7 @@ class Payment < ApplicationRecord
 
   def set_balance
     self.invoice.update(
-        balance: self.invoice.balance - self.amount,
+        balance: self.invoice.total - self.invoice.payments.sum(:amount),
         payment_date: self.next_payment
     )
   end
