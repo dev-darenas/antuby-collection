@@ -8,12 +8,12 @@
     .card-body
       p Total: #{sale.total_currency}
       p Saldo: #{sale.balance_currency}
-      p Vencimiento: #{sale.expiration_date}
-      p Fecha de Pago: #{sale.payment_date}
+      p Vencimiento: #{sale.expiration}
+      p Fecha de Pago: #{sale.next_payment}
       br
       - if sale.payments.exists?
-        p Fecha Ultimos Pago: #{sale.payments.last.payment_date}
-        p Valor Ultimos Pago: #{sale.payments.last.amount}
+        p Fecha Ultimos Pago: #{sale.last_payment}
+        p Valor Ultimos Pago: #{sale.last_currency}
 
       .btn-group.mr-2
         = link_to 'Crear', new_invoices_sale_payment_path(sale), class: 'btn btn-primary'
