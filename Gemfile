@@ -47,7 +47,7 @@ gem 'rubyXL', '3.4.10'
 gem 'carrierwave', '2.0.2'
 
 gem 'rails_admin', '~> 2.0'
-gem "chartkick", '3.3.1'
+gem "chartkick", '3.4.0'
 
 gem 'whenever', require: false
 gem 'sidekiq'
